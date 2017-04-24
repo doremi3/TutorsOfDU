@@ -10,8 +10,14 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
+        <form>
+        
+            <input type="submit" value="Sign Up" formaction="Registration_form.php">
+            
+        </form>
         <?php
         // put your code here
+
         ?>
     </body>
 </html>
