@@ -200,7 +200,7 @@
 		<div id="id01" class="modal">
 			<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">�</span>
 					
-			 <form onsubmit = "check_validity()" action="registered.php">
+                        <form method ="post" enctype="multipart/form-data" onsubmit = "return check_validity()" action="do_register.php">
 				
 				<h1><center> <strong> Sign Up </strong> </center> </h1>
 				
@@ -226,44 +226,50 @@
                                    <input type="tel" name="phone" id = "phone">
                                    
                                    <label for="phone_privacy"></label>
-                                   <select name = "phone_privacy">
+                                   <select name = "phone_privacy" id="phone_privacy">
                                     <!--<option value=""></option>-->
-                                        <option value=0 selected="selected">Only me</option>
+                                        <option value=0 selected>Only me</option>
                                         <option value=1 >Everyone</option>
                                     </select><br>
 				  
 				  <label>Gender:</label>
-				  <input type="radio" id="Male" value="Male" name="user_sex"><label for="Male" class="light">Male</label><br>
-				  <input type="radio" id="Female" value="Female" name="user_sex"><label for="Female" class="light">Female</label>
+				  <input type="radio" id="Male" value="Male" name="gender" checked><label for="Male" class="light">Male</label><br>
+				  <input type="radio" id="Female" value="Female" name="gender" ><label for="Female" class="light">Female</label>
 				</fieldset>
 				
 				<fieldset>
 				  <legend><span class="number">2</span>Your profile</legend>
 				  <label for="bio">Biography:</label>
-				  <textarea id="bio" name="user_bio"></textarea>
+                                  <textarea id="biography" name="biography"></textarea>
+                                  
+                  
 				</fieldset>
 				<fieldset>
 				<label for="department">Department:</label>
-				<select id="department" name="user_department">
-				  <optgroup label="Engineering Faculty">
+				<select id="department" name="department">
+				 
 					<option value="computer_science_and_engineering">Computer Science and Engineering</option>
 					<option value="genetics">Genetics</option>            
-				  </optgroup>
+				
 				  
-				  <optgroup label="Business Facutly">
+				  
 					<option value="finance">Finance</option>
 					<option value="marketing">Marketing</option>
-				  </optgroup>
+                
+				  
 				</select>
-				
-				<!--
+                               <!--
 				  <label>Interests:</label>
 				  <input type="checkbox" id="development" value="interest_development" name="user_interest"><label class="light" for="development">Development</label><br>
 					<input type="checkbox" id="design" value="interest_design" name="user_interest"><label class="light" for="design">Design</label><br>
 				  <input type="checkbox" id="business" value="interest_business" name="user_interest"><label class="light" for="business">Business</label>
 				-->
-				
 				</fieldset>
+                                
+                                <fieldset>
+                                    <label for="upload_image">Upload photo:</label>
+                                     <input type="file" name="fileToUpload" id="fileToUpload">
+                                </fieldset>
 				<input type="submit" value="Submit">
 			  </form>		  
 		</div>
@@ -349,11 +355,12 @@
                     }
                     
                        
-                    if(error==false)
+                    if(error==false && check_unique()==true)
                     {
-                        if(check_unique()==true)
-                            window.location.href = "registered.php";
+                         return true;
                     }
+                    return false;
+            
                 }
 		function check_unique() 
 		{		
@@ -363,7 +370,7 @@
 			
 			if(username_response == "" && email_response =="")	
 			{
-				register_user();
+				//register_user();
 				return true;				
 			}
 			else
@@ -379,9 +386,28 @@
 			var name = document.getElementById("name");
 			var password = document.getElementById("password");
 			var phone = document.getElementById("phone");
+                        var genderList = document.getElementsByName("user_sex");
+                        var gender;
+                        if(genderList[0].checked)
+                            gender=genderList[0].value;
+                        else
+                            gender=genderList[1].value;
+                        
+                        var phone_privacy_array = document.getElementById("phone_privacy");
+                        var phone_privacy = phone_privacy_array.options[phone_privacy_array.selectedIndex].value;
+                        
+                        var department_array = document.getElementById("department");
+                        var department = department_array.options[department_array.selectedIndex].value;
+                        
+                       var biography = document.getElementById("biography");
+                       
+                       var upload_image = document.getElementById("upload_image");
+                       //alert(upload_image.files[0].name);
+              
 			var xhttp = new XMLHttpRequest();
 			var url="do_register.php";
-			var params = "username="+username.value+"&email="+email.value+"&name="+name.value+"&password="+password.value+"&phone="+phone.value;
+                        
+			var params = "username="+username.value+"&email="+email.value+"&name="+name.value+"&password="+password.value+"&phone="+phone.value+"&gender="+gender+"&phone_privacy="+phone_privacy+"&department="+department+"&biography="+biography.value+"&upload_image="+upload_image.files[0].name;
 			xhttp.open("POST",url,false);
 			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xhttp.setRequestHeader("Content-length", params.length);
@@ -391,6 +417,8 @@
 				if(this.readyState==4 && this.status ==200)
 				{					
 					response =xhttp.responseText;
+                                        alert(response);
+                                       
 				}
 			}
 			
@@ -422,7 +450,7 @@
 			}
 			
 			
-			xhttp.send(params);											
+			xhttp.send(params);
 			return response;
 		} 
 		

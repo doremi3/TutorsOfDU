@@ -1,7 +1,7 @@
 <?php
 
 
-$username = $_POST["username"];
+
 
 
 $servername = "localhost";
@@ -13,6 +13,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+$username = $_POST["username"];
 $sql = "SELECT username FROM user_info WHERE username = '$username'";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
