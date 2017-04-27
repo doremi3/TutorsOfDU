@@ -15,9 +15,10 @@ $password = $_POST["password"];
 $phone = $_POST["phone"];
 $phone_privacy=1;
 $photo = "photo";
+$gender="female";
 
 
-$sql = "INSERT INTO user_info (username, email, name, password, phone, phone_privacy,photo,verified) VALUES ('$username', '$email','$name', '$password', '$phone', '$phone_privacy','$photo',0)";
+$sql = "INSERT INTO user_info (username, email, name, password, gender,phone, phone_privacy,photo,verified) VALUES ('$username', '$email','$name', '$password','$gender', '$phone', '$phone_privacy','$photo',0)";
 
 if ($conn->query($sql) == TRUE) {
    echo"Registration is complete! ^_^";

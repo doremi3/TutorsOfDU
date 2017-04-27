@@ -177,7 +177,7 @@
 		<!-- Individual's Identities -->
 		
 		<div id="info" class="modal">
-			<span onclick="document.getElementById('info').style.display='none'" class="close" title="Close Modal">×</span>
+			<span onclick="document.getElementById('info').style.display='none'" class="close" title="Close Modal">ï¿½</span>
 							
 				<form action="registered.php" method="post">
 				
@@ -198,22 +198,39 @@
 		<!-- SIGN UP FORM -->
 		
 		<div id="id01" class="modal">
-			<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+			<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">ï¿½</span>
 					
-			<form action="registered.php" method="post">
+			 <form onsubmit = "check_validity()" action="registered.php">
 				
 				<h1><center> <strong> Sign Up </strong> </center> </h1>
 				
 				<fieldset>
 				  <legend><span class="number">1</span>Your basic info</legend>
 				  <label for="name">Name:</label>
-				  <input type="text" id="name" name="user_name">
+				  <input type="text" name="name" id = "name" required><br>
+                                   <p id="name_validity"></p>
 				  
 				  <label for="mail">Email:</label>
-				  <input type="email" id="mail" name="user_email">
+				  <input type="email" name="email" id="email" required><br>
+                                   <p id="email_validity"></p>
+                                   
+                                   <label for="username">Username:</label>
+				  <input type="text" name="username" id = "username" required><br>
+                                   <p id="username_validity"></p>
 				  
 				  <label for="password">Password:</label>
-				  <input type="password" id="password" name="user_password">
+				  <input type="password" name="password" id="password" required><br>
+                                   <p id="password_validity"></p>
+                                   
+                                   <label for="phone">Phone:</label>
+                                   <input type="tel" name="phone" id = "phone">
+                                   
+                                   <label for="phone_privacy"></label>
+                                   <select name = "phone_privacy">
+                                    <!--<option value=""></option>-->
+                                        <option value=0 selected="selected">Only me</option>
+                                        <option value=1 >Everyone</option>
+                                    </select><br>
 				  
 				  <label>Gender:</label>
 				  <input type="radio" id="Male" value="Male" name="user_sex"><label for="Male" class="light">Male</label><br>
@@ -247,14 +264,14 @@
 				-->
 				
 				</fieldset>
-				<button type="submit">Sign Up</button>
+				<input type="submit" value="Submit">
 			  </form>		  
 		</div>
 			
 		<!-- Login -->
 		
 		<div id="id02" class="modal">
-			<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">×</span>
+			<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">ï¿½</span>
 					
 			<form action="registered.php" method="post">
 				
@@ -299,6 +316,146 @@
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
+                        
+                        
+                        
+                        <script type ="text/javascript">
+		
+                
+                function check_validity()
+                {
+                    var error=false;
+                    var username = document.getElementById("username");
+                    var email = document.getElementById("email");
+                    var name = document.getElementById("name");
+                    var password = document.getElementById("password");
+                    var phone = document.getElementById("phone");
+                    if(username.value.length > 15){
+                        error=true;
+                        document.getElementById("username_validity").innerHTML = "Length of username cannot be greater than 15 ";
+                    }
+                    if(email.value.length>50){
+                        error=true;
+                        document.getElementById("email_validity").innerHTML = "Email is too long.";
+                    }
+                   
+                    if(password.value.length > 20){
+                        error=true;
+                        document.getElementById("password_validity").innerHTML = "Length of password cannot be greater than 20 ";
+                    }
+                     if(name.value.length >50){
+                        error=true;
+                        document.getElementById("name_validity").innerHTML = "Length of name cannot be greater than 50 ";
+                    }
+                    
+                       
+                    if(error==false)
+                    {
+                        if(check_unique()==true)
+                            window.location.href = "registered.php";
+                    }
+                }
+		function check_unique() 
+		{		
+		
+			var username_response = username_validate();
+			var email_response = email_validate();
+			
+			if(username_response == "" && email_response =="")	
+			{
+				register_user();
+				return true;				
+			}
+			else
+				return false;
+					
+			
+		}
+
+		function register_user()
+		{
+			var username = document.getElementById("username");
+			var email = document.getElementById("email");
+			var name = document.getElementById("name");
+			var password = document.getElementById("password");
+			var phone = document.getElementById("phone");
+			var xhttp = new XMLHttpRequest();
+			var url="do_register.php";
+			var params = "username="+username.value+"&email="+email.value+"&name="+name.value+"&password="+password.value+"&phone="+phone.value;
+			xhttp.open("POST",url,false);
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp.setRequestHeader("Content-length", params.length);
+			xhttp.setRequestHeader("Connection", "close");
+			xhttp.onreadystatechange = function()
+			{
+				if(this.readyState==4 && this.status ==200)
+				{					
+					response =xhttp.responseText;
+				}
+			}
+			
+			
+			xhttp.send(params);											
+			
+		}
+		
+		function username_validate() 
+		{
+			
+			var inpObj = document.getElementById("username");
+			var xhttp = new XMLHttpRequest();
+			var response;
+			var url="username_validation.php";
+			var params = "username="+inpObj.value;
+			xhttp.open("POST",url,false);
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp.setRequestHeader("Content-length", params.length);
+			xhttp.setRequestHeader("Connection", "close");
+			xhttp.onreadystatechange = function()
+			{
+				if(this.readyState==4 && this.status ==200)
+				{					
+					response =xhttp.responseText;
+					document.getElementById("username_validity").innerHTML = response;	
+					
+				}
+			}
+			
+			
+			xhttp.send(params);											
+			return response;
+		} 
+		
+		function email_validate() 
+		{
+			
+			var inpObj = document.getElementById("email");
+			var xhttp = new XMLHttpRequest();
+			var response;
+			var url="email_validation.php";
+			var params = "email="+inpObj.value;
+			xhttp.open("POST",url,false);
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp.setRequestHeader("Content-length", params.length);
+			xhttp.setRequestHeader("Connection", "close");
+			xhttp.onreadystatechange = function()
+			{
+				if(this.readyState==4 && this.status ==200)
+				{					
+					response =xhttp.responseText;
+					document.getElementById("email_validity").innerHTML = response;	
+					
+				}
+			}
+			
+			
+			xhttp.send(params);											
+			return response;
+		} 
+		
+		
+
+		</script>
 
 	</body>
 </html>
