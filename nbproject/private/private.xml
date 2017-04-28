@@ -4,8 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp/htdocs/TutorsOfDU/index.php</file>
-            <file>file:/C:/xampp/htdocs/TutorsOfDU/registered.php</file>
+            <file>file:/C:/xampp/htdocs/TutorsOfDU/email_validation.php</file>
+            <file>file:/C:/xampp/htdocs/TutorsOfDU/main.html</file>
+            <file>file:/C:/xampp/htdocs/TutorsOfDU/username_validation.php</file>
+            <file>file:/C:/xampp/htdocs/TutorsOfDU/index.html</file>
             <file>file:/C:/xampp/htdocs/TutorsOfDU/Registration_form.php</file>
+            <file>file:/C:/xampp/htdocs/TutorsOfDU/individual.html</file>
+            <file>file:/C:/xampp/htdocs/TutorsOfDU/sign_up.html</file>
+            <file>file:/C:/xampp/htdocs/TutorsOfDU/syntax.html</file>
+            <file>file:/C:/xampp/htdocs/TutorsOfDU/do_register.php</file>
         </group>
     </open-files>
 </project-private>

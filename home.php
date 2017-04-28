@@ -1,9 +1,10 @@
-<!DOCTYPE HTML>
-<!--
-	Strata by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+<?php
+
+	session_start();
+	$login_session=$_SESSION['login_user'];
+	echo $login_session;?></h1>
+
+?>
 <html>
 	<head>
 		<title>Tutors of Dhaka University</title>
@@ -35,7 +36,7 @@
 						<label for="category">Subject/Category:</label>
 						<select id="category" name="category">
 						  <optgroup label="Science">
-							<option value="phycis">Phycis</option>
+							<option value="Physics">Physics</option>
 							<option value="chemistry">Chemistry</option>
 							<option value="biology">Bilogy</option>
 							<option value="mathematics">Mathematics</option>
@@ -105,66 +106,44 @@
 					</section>
 
 				<!-- Two -->
+				
+					<?php
+						include("config.php");
+						$sql = "SELECT username,name,department FROM user_info WHERE isAvailable = '1'";
+						$result = $conn->query($sql);
+						
+						$rows = $result->num_rows;
+						
+						
+						$cnt=0;
+						
+						
+					?>
 					<section id="two">
 						<h2>Some of the tutors</h2>
 													
-							<article class="3u 12u$(xsmall) work-item">
-								<a href="images/fulls/01.jpg" class="image fit thumb"><img src="images/thumbs/01.jpg" alt=""></a>
-								<h3>Jahid Hasan</h3>
-								<p>Department of Computer Science and Engineering.</p>																
-							</article>
+							<?php 
+							$cnt=0;
 							
-							<article class="3u$ 12u$(xsmall) work-item">
-								<a href="images/fulls/02.jpg" class="image fit thumb"><img src="images/thumbs/02.jpg" alt="" /></a>
-								<h3>Raisa Naser</h3>
-								<p>Department of Applied Chemistry and Chemical Engineering</p>
-							</article>
-														
+							while($list = mysqli_fetch_array($result,MYSQLI_ASSOC))
+							{
 							
-							<article class="3u 12u$(xsmall) work-item">
-								<a href="images/fulls/03.jpg" class="image fit thumb"><img src="images/thumbs/03.jpg" alt="" /></a>
-								<h3>Barna Nasid Habib</h3>
-								<p>Department of Computer Science and Engineering.</p>
-							</article>
+								
+							
+								echo "<article class=\"3u 12u$(xsmall) work-item\">";
+								echo "	<a href=\"uploads/". $list['username'].".jpg \" class=\"image fit thumb\"><img src=\"uploads/".$list['username'].".jpg\" alt=\"\"></a>";
+								echo "	<h3> ".$list['name']." </h3>";
+								echo "	<p> ".$list['department']." </p>"	;															
+								echo "</article>";
+								$cnt = $cnt+1;
+								if($cnt > 12 )
+									break;
+							
+							}
+							
+							?>
 							
 							
-							<article class="3u$ 12u$(xsmall) work-item">
-								<a href="images/fulls/04.jpg" class="image fit thumb"><img src="images/thumbs/04.jpg" alt="" /></a>
-								<h3>Mahir Ashab</h3>
-								<p>Department of Computer Science and Engineering.</p>
-							</article>
-							
-							<article class="3u 12u$(xsmall) work-item">
-								<a href="images/fulls/05.jpg" class="image fit thumb"><img src="images/thumbs/05.jpg" alt="" /></a>
-								<h3>Abir Mahmud Pavel</h3>
-								<p>Department of Computer Science and Engineering.</p>
-							</article>
-							<article class="3u$ 12u$(xsmall) work-item">
-								<a href="images/fulls/06.jpg" class="image fit thumb"><img src="images/thumbs/06.jpg" alt="" /></a>
-								<h3>Shahreen Salim</h3>
-								<p>Department of Computer Science and Engineering.</p>
-							</article>				
-
-
-
-							<article class="3u 12u$(xsmall) work-item">
-								<a href="images/fulls/01.jpg" class="image fit thumb"><img src="images/thumbs/01.jpg" alt=""></a>
-								<h3>Jahid Hasan</h3>
-								<p>Department of Computer Science and Engineering.</p>																
-							</article>
-							
-							<article class="3u$ 12u$(xsmall) work-item">
-								<a href="images/fulls/02.jpg" class="image fit thumb"><img src="images/thumbs/02.jpg" alt="" /></a>
-								<h3>Raisa Naser</h3>
-								<p>Department of Applied Chemistry and Chemical Engineering</p>
-							</article>
-														
-							
-							<article class="3u 12u$(xsmall) work-item">
-								<a href="images/fulls/03.jpg" class="image fit thumb"><img src="images/thumbs/03.jpg" alt="" /></a>
-								<h3>Barna Nasid Habib</h3>
-								<p>Department of Computer Science and Engineering.</p>
-							</article>
 						
 						<ul class="actions">
 							<li><a href="main.html" class="button">View All</a></li>
@@ -280,13 +259,13 @@
 				<label for="department">Department:</label>
 				<select id="department" name="department">
 				 
-					<option value="computer_science_and_engineering">Computer Science and Engineering</option>
-					<option value="genetics">Genetics</option>            
+					<option value="Computer Science And Engineering">Computer Science and Engineering</option>
+					<option value="Genetics">Genetics</option>            
 				
 				  
 				  
-					<option value="finance">Finance</option>
-					<option value="marketing">Marketing</option>
+					<option value="Finance">Finance</option>
+					<option value="Marketing">Marketing</option>
                 
 				  
 				</select>
@@ -302,7 +281,7 @@
                                     <label for="upload_image">Upload photo:</label>
                                      <input type="file" name="fileToUpload" id="fileToUpload">
                                 </fieldset>
-				<input type="submit" value="Submit">
+				<button type="submit" value="Submit">Sign up</button>
 			  </form>	  
 		</div>
 		
@@ -311,23 +290,31 @@
 		<div id="id02" class="modal">
 			<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">�</span>
 					
-			<form action="registered.php" method="post">
+			<form method ="post" enctype="multipart/form-data" onsubmit = "return login_validate()" action="login.php">
 				
 				<h1><center>Login</center> </h1>
 				
 				<fieldset>
 				  
 				  <label for="username">Username:</label>
-				  <input type="text" id="name" name="user_name">				  
+				  <input type="text" id="login_username" name="username" required>				  
 				  
 				  <label for="password">Password:</label>
-				  <input type="password" id="password" name="user_password">
+				  <input type="password" id="login_password" name="password" required><br>
+				  <p id="login_validity"></p>
 				  
 				</fieldset>
 				
-				<button type="submit">Login</button>
-			  </form>		  
+				<button type="submit" name = "login">Login</button>
+			  </form>	
+			  
+			 
+
 		</div>
+		
+		
+    
+
 		
 		<script>
 		// Get the modal
@@ -344,19 +331,7 @@
 				
 		</script>
 		
-		
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.poptrox.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
-                        
-                        <script type ="text/javascript">
-		
-                
+		<script>
                 function check_validity()
                 {
                     var error=false;
@@ -399,7 +374,7 @@
 			
 			if(username_response == "" && email_response =="")	
 			{
-				//register_user();
+				
 				return true;				
 			}
 			else
@@ -408,53 +383,7 @@
 			
 		}
 
-		function register_user()
-		{
-			var username = document.getElementById("username");
-			var email = document.getElementById("email");
-			var name = document.getElementById("name");
-			var password = document.getElementById("password");
-			var phone = document.getElementById("phone");
-                        var genderList = document.getElementsByName("user_sex");
-                        var gender;
-                        if(genderList[0].checked)
-                            gender=genderList[0].value;
-                        else
-                            gender=genderList[1].value;
-                        
-                        var phone_privacy_array = document.getElementById("phone_privacy");
-                        var phone_privacy = phone_privacy_array.options[phone_privacy_array.selectedIndex].value;
-                        
-                        var department_array = document.getElementById("department");
-                        var department = department_array.options[department_array.selectedIndex].value;
-                        
-                       var biography = document.getElementById("biography");
-                       
-                       var upload_image = document.getElementById("upload_image");
-                       //alert(upload_image.files[0].name);
-              
-			var xhttp = new XMLHttpRequest();
-			var url="do_register.php";
-                        
-			var params = "username="+username.value+"&email="+email.value+"&name="+name.value+"&password="+password.value+"&phone="+phone.value+"&gender="+gender+"&phone_privacy="+phone_privacy+"&department="+department+"&biography="+biography.value+"&upload_image="+upload_image.files[0].name;
-			xhttp.open("POST",url,false);
-			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xhttp.setRequestHeader("Content-length", params.length);
-			xhttp.setRequestHeader("Connection", "close");
-			xhttp.onreadystatechange = function()
-			{
-				if(this.readyState==4 && this.status ==200)
-				{					
-					response =xhttp.responseText;
-                                        alert(response);
-                                       
-				}
-			}
-			
-			
-			xhttp.send(params);											
-			
-		}
+		
 		
 		function username_validate() 
 		{
@@ -466,8 +395,7 @@
 			var params = "username="+inpObj.value;
 			xhttp.open("POST",url,false);
 			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xhttp.setRequestHeader("Content-length", params.length);
-			xhttp.setRequestHeader("Connection", "close");
+		
 			xhttp.onreadystatechange = function()
 			{
 				if(this.readyState==4 && this.status ==200)
@@ -493,8 +421,7 @@
 			var params = "email="+inpObj.value;
 			xhttp.open("POST",url,false);
 			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xhttp.setRequestHeader("Content-length", params.length);
-			xhttp.setRequestHeader("Connection", "close");
+		
 			xhttp.onreadystatechange = function()
 			{
 				if(this.readyState==4 && this.status ==200)
@@ -510,7 +437,60 @@
 			return response;
 		} 
 		
+		function login_validate() 
+					{
+						
+						var response=login_connect_to_database();
+					
+						if(response == ""){
+						
+							return true;
+						}
+						else
+							return false;
+						
+					} 
+					
+					function login_connect_to_database()
+					{
+						var usernameObj = document.getElementById("login_username");
+						var passwordObj = document.getElementById("login_password");
+						var xhttp = new XMLHttpRequest();
+						var response;
+						var url="check_login.php";
+						var params = "username="+usernameObj.value+"&password="+passwordObj.value;;
+						xhttp.open("POST",url,false);
+						xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+					//	xhttp.setRequestHeader("Content-length", params.length);
+						//xhttp.setRequestHeader("Connection", "close");
+						xhttp.onreadystatechange = function()
+						{
+							if(this.readyState==4 && this.status ==200)
+							{					
+								response =xhttp.responseText;
+								document.getElementById("login_validity").innerHTML = response;	
+								
+							}
+						}
+						
+						
+						xhttp.send(params);
+						return response;
+					}
+		
 		</script>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+                        
+                        <script type ="text/javascript">
+		
+                
 
 	</body>
 </html>

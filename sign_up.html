@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign Up Form</title>
+        <link rel="stylesheet" href="assets/css/normalize.css">
+        <link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>        
+    </head>    
+<body>
+
+<h2>Modal Signup Form</h2>
+
+<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button>
+
+<div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+  
+  
+  <form action="registered.php" method="post">
+      
+        <h1>Sign Up</h1>
+        
+        <fieldset>
+          <legend><span class="number">1</span>Your basic info</legend>
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="user_name">
+          
+          <label for="mail">Email:</label>
+          <input type="email" id="mail" name="user_email">
+          
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="user_password">
+          
+          <label>Gender:</label>
+          <input type="radio" id="Male" value="Male" name="user_sex"><label for="Male" class="light">Male</label><br>
+          <input type="radio" id="Female" value="Female" name="user_sex"><label for="Female" class="light">Female</label>
+        </fieldset>
+        
+        <fieldset>
+          <legend><span class="number">2</span>Your profile</legend>
+          <label for="bio">Biography:</label>
+          <textarea id="bio" name="user_bio"></textarea>
+        </fieldset>
+        <fieldset>
+        <label for="department">Department:</label>
+        <select id="department" name="user_department">
+          <optgroup label="Engineering Faculty">
+            <option value="computer_science_and_engineering">Computer Science and Engineering</option>
+            <option value="genetics">Genetics</option>            
+          </optgroup>
+          
+          <optgroup label="Business Facutly">
+            <option value="finance">Finance</option>
+            <option value="marketing">Marketing</option>
+          </optgroup>
+        </select>
+		
+		<!--
+          <label>Interests:</label>
+          <input type="checkbox" id="development" value="interest_development" name="user_interest"><label class="light" for="development">Development</label><br>
+            <input type="checkbox" id="design" value="interest_design" name="user_interest"><label class="light" for="design">Design</label><br>
+          <input type="checkbox" id="business" value="interest_business" name="user_interest"><label class="light" for="business">Business</label>
+        -->
+        
+        </fieldset>
+        <button type="submit">Sign Up</button>
+      </form>
+  
+  
+  
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>

@@ -24,7 +24,7 @@ $target_dir = "uploads/";
 $target_file = $target_dir.$_FILES["fileToUpload"]["name"];
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-$target_file=$target_dir.$username.".".$imageFileType;
+$target_file=$target_dir.$username."."."jpg";
 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         echo "";
     } else {
@@ -32,9 +32,9 @@ if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     }
 
 
-$sql = "INSERT INTO user_info (username, email, name, password, gender,phone, phone_privacy,department,biography,verified) VALUES ('$username', '$email','$name', '$password','$gender', '$phone', '$phone_privacy','$department','$biography',0)";
+$sql = "INSERT INTO user_info (username, email, name, password, gender,phone, phone_privacy,department,biography,verified,isAvailable) VALUES ('$username', '$email','$name', '$password','$gender', '$phone', '$phone_privacy','$department','$biography',0,1)";
 
-if ($conn->query($sql) == TRUE) {
+if ($conn->query($sql) == TRUE ) {
     header( "Location: registered.php" );
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
