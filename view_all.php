@@ -1,16 +1,11 @@
 <?php
 
-
 	session_start();
-	/*$login_session=$_SESSION['login_user'];
-	echo $login_session;</h1>*/
-	
 
 ?>
 <html>
-
-		
 	<?php include"filter_sidebar.php" ?>
+
 		<!-- Main -->
 			<div id="main">
 
@@ -21,50 +16,17 @@
                                          else
                                              include"login_header.php"
                                         ?>
-
 				<!-- Two -->
-				
-					<?php
-						include("config.php");
-						$sql = "SELECT username,name,department FROM user_info WHERE isAvailable = '1'";
-						$result = $conn->query($sql);
-						
-						$rows = $result->num_rows;
-						
-						
-						$cnt=0;
-						
-						
-					?>
 					<section id="two">
-						<h2>Some of the tutors</h2>
-													
-							<?php 
-							$cnt=0;
-							
-							while($list = mysqli_fetch_array($result,MYSQLI_ASSOC))
-							{
-							
-								
-							
-								echo "<article class=\"3u 12u$(xsmall) work-item\">";
-								echo "	<a href=\"uploads/". $list['username'].".jpg \" class=\"image fit thumb\"><img src=\"uploads/".$list['username'].".jpg\" alt=\"\"></a>";
-								echo "	<h3> ".$list['name']." </h3>";
-								echo "	<p> ".$list['department']." </p>"	;															
-								echo "</article>";
-								$cnt = $cnt+1;
-								if($cnt == 8 )
-									break;
-							
-							}
-							
-							?>
-							
-							
 						
-						<ul class="actions">
-                                                    <li><a href="view_all.php" class="button">View All</a></li>
-						</ul>
+						<p>
+						<span class="image left"><img src="images/thumbs/02.jpg" alt="" height="150" width="243"/></span>
+						Name: Raisa Naser <br>
+						Department: Department of Applied Chemistry and Chemical Engineering <br>							
+						<button onclick="document.getElementById('info').style.display='block'" style="width:auto;">View More Info</button>																															
+						</p>							
+						
+
 					</section>
 
 				<!-- Three -->
@@ -110,7 +72,29 @@
 
 		<!-- Footer -->
 			<?php include"footer.php" ?>
-		<!-- Sign up form -->
+			
+			
+		<!-- Individual's Identities -->
+		
+		<div id="info" class="modal">
+			<span onclick="document.getElementById('info').style.display='none'" class="close" title="Close Modal">�</span>
+							
+				<form action="registered.php" method="post">
+				
+				<center> <span class="image left"><img src="images/thumbs/02.jpg" alt="" height="150" width="243"/></span></center>
+				
+				<h2> Name: Raisa Naser </h2>
+				<h5> Department: Department of Applied Chemistry and Chemical Engineering</h5>
+				<br> <br>
+				
+				<h5> Interests: Math, Physic, Chemistry, Biology </h5>
+				<h5> Location: Shantinagar </h5>
+			
+				<button type="submit">Send Message</button>
+			  </form>
+				  
+		</div>
+		
 		<?php 
                     if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true);
                     else
@@ -119,7 +103,21 @@
                 ?>
 		
 		
-		
+		<script>
+		// Get the modal
+		var modal = document.getElementById('info');
+		var modal1 = document.getElementById('id01');
+		var modal2 = document.getElementById('id02');
+
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(events) {
+			if (events.target == modal1 || events.target == modal || events.target == modal2) {
+				modal.style.display = "none";
+				modal1.style.display = "none";				
+				modal2.style.display = "none";
+			}
+		}				
+		</script>
 		
 
 		<!-- Scripts -->
@@ -127,13 +125,8 @@
 			<script src="assets/js/jquery.poptrox.min.js"></script>
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
-		
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
-                        
-                        <script type ="text/javascript">
-		
-                
 
 	</body>
 </html>
