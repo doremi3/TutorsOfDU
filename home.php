@@ -8,8 +8,15 @@
 
 ?>
 <html>
-
+    <head>
+        <meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
 		
+		<link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>  
+    </head>
+
 	<?php include"filter_sidebar.php" ?>
 		<!-- Main -->
 			<div id="main">
@@ -48,8 +55,9 @@
 								
 							
 								echo "<article class=\"3u 12u$(xsmall) work-item\">";
-								echo "	<a href=\"uploads/". $list['username'].".jpg \" class=\"image fit thumb\"><img src=\"uploads/".$list['username'].".jpg\" alt=\"\"></a>";
-								echo "	<h3> ".$list['name']." </h3>";
+								echo "<a href=\"uploads/". $list['username'].".jpg \" class=\"image fit thumb\"><img src=\"uploads/".$list['username'].".jpg\" alt=\"\"></a>";
+								echo "<a href=\"profile.php?username=".$list['username']."\" >".$list['name']."</a>";
+                                                               // echo "	<h3> ".$list['name']." </h3>";
 								echo "	<p> ".$list['department']." </p>"	;															
 								echo "</article>";
 								$cnt = $cnt+1;
@@ -60,10 +68,10 @@
 							
 							?>
 							
-							
+							<a hr
 						
 						<ul class="actions">
-                                                    <li><a href="view_all.php" class="button">View All</a></li>
+                                                    <a href="view_all.php" class="button">View All</a>
 						</ul>
 					</section>
 

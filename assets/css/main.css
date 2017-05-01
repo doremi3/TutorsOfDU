@@ -1949,7 +1949,7 @@
 				border-radius: 0.35em;
 				border: solid 3px rgba(255, 255, 255, 0.5);
 				color: #fff;
-				content: 'View';
+				content: '';
 				display: inline-block;
 				font-size: 0.8em;
 				font-weight: 400;
@@ -1966,7 +1966,7 @@
 			}
 
 			.image.thumb:hover:after {
-				opacity: 1.0;
+				opacity: 0;
 			}
 
 			.image.thumb:hover:before {
@@ -1996,17 +1996,19 @@
 		}
 
 			.image.left img, .image.right img {
-				//width: 100%;
+				/*width: 100%;*/
 			}
 
 		.image.fit {
 			display: block;
 			margin: 2em 2em 2em 2em;
-			width: 90%;
+			width: 12em;
+                        height: 10em;
 		}
 
 			.image.fit img {
 				width: 100%;
+                                height: 100%;
 			}
 
 		.image.avatar {
@@ -2505,7 +2507,7 @@
 		max-width: 100%;
 		padding: 2em 2em 2em 2em;
 		width: calc(100% - 30%);
-		//text-align: right;
+		/*text-align: right;*/
 	}
 	
 	#one{
