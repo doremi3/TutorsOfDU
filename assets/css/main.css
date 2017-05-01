@@ -2512,12 +2512,30 @@
 		text-align: right;
 	}
 	
+
+	#one button{ /* This is how u do it */
+		padding: 10px 26px 10px 26px;
+		color: #FFF;
+		background-color: #4bc970;
+		font-size: 16px;
+		text-align: center;
+		font-style: normal;
+		margin: 0em 0em 0em 0em;
+		border-radius: 5px;
+		width: 100%;
+		border: 1px solid #3ac162;
+		border-width: 1px 1px 3px; /* Up LR Down */
+		box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
+		margin-bottom: 0px;		
+	}
+	
+	
 	#filter{
 		text-align: left;
 	}
 
 		#main > section {
-			border-top: solid 2px #efefef;
+			border-top: solid 3px #efefef;
 			margin: 1.5em 0 0 0;
 			padding: 1.5em 0 0 0;
 		}
