@@ -1,15 +1,7 @@
 <?php
 
 session_start();
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "tutors_of_du";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include"config.php";
 $username = $_POST["username"];
 $email = $_POST["email"];
 $name = $_POST["name"];
@@ -28,6 +20,13 @@ $uploadOk = 1;
 $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 $target_file = $target_dir . $username . "." . "jpg";
 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+    
+    $width=100;
+    $height=100;
+    $image = imagecreatefromgd($target_file);
+    $new_image = imagecreatetruecolor($width, $height);
+    imagecopyresampled($new_image, $image, 0, 0, 0, 0, $width, $height, imagesx($image), imagesy($image));
+    $image = $new_image;
     echo "";
 } else {
     echo "Sorry, there was an error uploading your file.";
