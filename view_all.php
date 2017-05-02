@@ -27,12 +27,12 @@
 				<!-- Two -->
 					<section id="two">
 						
-						<p>
+					<!--	<p>
 						<span class="image left"><img src="images/thumbs/02.jpg" alt="" height="150" width="243"/></span>
 						Name: Raisa Naser <br>
 						Department: Department of Applied Chemistry and Chemical Engineering <br>							
 						<button onclick="document.getElementById('info').style.display='block'" style="width:auto;">View More Info</button>																															
-						</p>							
+						</p>	--!>					
 						
 
 					</section>

@@ -5,9 +5,9 @@ $username="root";
 $password="";
 $dbname = "tutors_of_du";
 
-$username = "tutorsfromdu";
+/*$username = "tutorsfromdu";
 $password = "tutors0312";
-$dbname = "tutorsfromdu";
+$dbname = "tutorsfromdu";*/
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
