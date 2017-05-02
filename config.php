@@ -4,7 +4,7 @@ $servername="localhost";
 $username="root";
 $password="";
 $dbname = "tutors_of_du";
-$servername = "csedu.cf";
+
 $username = "tutorsfromdu";
 $password = "tutors0312";
 $dbname = "tutorsfromdu";
