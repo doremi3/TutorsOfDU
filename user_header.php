@@ -10,6 +10,8 @@
 						-->
 						
 						<ul class="actions">
+						
+						
 							
 							<li>
 							<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><?php echo $_SESSION['login_user']?></button>														
@@ -22,6 +24,15 @@
                                          
 							
 						</ul>
+						<?php
+								$username = $_SESSION['login_user'];
+								include"config.php";
+								$sql = "SELECT verified FROM user_info WHERE username = '$username'";
+								$result = $conn->query($sql);
+								$list = mysqli_fetch_array($result,MYSQLI_ASSOC);
+								if($list['verified']==0)
+									echo "Please confirm your email address. Otherwise your profile will remain invisible to others.";
+							?>
                                                 
                                                 <form action="logout.php">
                                                     <input type="submit" value ="logout">

@@ -17,7 +17,7 @@
 		<!-- Header -->
 			<header id="header">
 				<div class="inner">
-					<a href="http://www.du.ac.bd" class="image avatar"><img src="images/avatar.jpg" alt="" /></a>
+					<a href="home.php" class="image avatar"><img src="images/avatar.jpg" alt="" /></a>
 					<h2><strong>Tutors of Dhaka University</strong></h2>
 					
 					<section id = "filter">

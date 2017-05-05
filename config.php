@@ -1,15 +1,15 @@
 <?php
 
 $servername="localhost";
-$username="root";
-$password="";
+$username_database="root";
+$password_database="";
 $dbname = "tutors_of_du";
 
-$username = "tutorsfromdu";
-$password = "tutors0312";
-$dbname = "tutorsfromdu";
+/*$username_database = "tutorsfromdu";
+$password_database = "tutors0312";
+$dbname = "tutorsfromdu";*/
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username_database, $password_database, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }

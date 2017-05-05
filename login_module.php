@@ -26,19 +26,19 @@
 				<fieldset>
 				  <legend><span class="number">1</span>Your basic info</legend>
 				  <label for="name">Name:</label>
-				  <input type="text" name="name" id = "name" required><br>
+				  <input type="text" name="name" id = "name" maxlength = "50" required><br>
                                    <p id="name_validity"></p>
 				  
 				  <label for="mail">Email:</label>
-				  <input type="email" name="email" id="email" required><br>
+				  <input type="email" name="email" id="email" maxlength = "50" required><br>
                                    <p id="email_validity"></p>
                                    
                                    <label for="username">Username:</label>
-				  <input type="text" name="username" id = "username" required><br>
+				  <input type="text" name="username" id = "username" maxlength = "15" required><br>
                                    <p id="username_validity"></p>
 				  
 				  <label for="password">Password:</label>
-				  <input type="password" name="password" id="password" required><br>
+				  <input type="password" name="password" id="password" maxlength = "20" required><br>
                                    <p id="password_validity"></p>
                                    
                                    <label for="phone">Phone:</label>
@@ -77,6 +77,8 @@
                 
 				  
 				</select>
+				
+				
                                <!--
 				  <label>Interests:</label>
 				  <input type="checkbox" id="development" value="interest_development" name="user_interest"><label class="light" for="development">Development</label><br>
@@ -111,6 +113,8 @@
 				  <input type="password" id="login_password" name="password" required><br>
 				  <p id="login_validity"></p>
 				  
+				  <a href="forgotpassword.php" >Forgot your password?</a>
+				  
 				</fieldset>
 				
 				<button type="submit" name = "login">Login</button>
@@ -143,28 +147,13 @@
                 function check_validity()
                 {
                     var error=false;
+					var error_message="";
                     var username = document.getElementById("username");
                     var email = document.getElementById("email");
                     var name = document.getElementById("name");
                     var password = document.getElementById("password");
                     var phone = document.getElementById("phone");
-                    if(username.value.length > 15){
-                        error=true;
-                        document.getElementById("username_validity").innerHTML = "Length of username cannot be greater than 15 ";
-                    }
-                    if(email.value.length>50){
-                        error=true;
-                        document.getElementById("email_validity").innerHTML = "Email is too long.";
-                    }
                    
-                    if(password.value.length > 20){
-                        error=true;
-                        document.getElementById("password_validity").innerHTML = "Length of password cannot be greater than 20 ";
-                    }
-                     if(name.value.length >50){
-                        error=true;
-                        document.getElementById("name_validity").innerHTML = "Length of name cannot be greater than 50 ";
-                    }
                     
                        
                     if(error==false && check_unique()==true)
@@ -186,7 +175,10 @@
 				return true;				
 			}
 			else
+			{
+				alert(username_response+"\n\r"+email_response)
 				return false;
+			}
 					
 			
 		}
@@ -210,6 +202,7 @@
 				{					
 					response =xhttp.responseText;
 					document.getElementById("username_validity").innerHTML = response;	
+					
 					
 				}
 			}
@@ -236,6 +229,7 @@
 				{					
 					response =xhttp.responseText;
 					document.getElementById("email_validity").innerHTML = response;	
+					
 					
 				}
 			}
@@ -287,3 +281,5 @@
 					}
 		
 		</script>
+		
+		<script src="assets/js/addInput.js" language="Javascript" type="text/javascript"></script>

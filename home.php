@@ -68,7 +68,7 @@
 							
 							?>
 							
-							<a hr
+						
 						
 						<ul class="actions">
                                                     <a href="view_all.php" class="button">View All</a>
