@@ -22,7 +22,7 @@
 				{
 					$list = mysqli_fetch_array($result,MYSQLI_ASSOC);
 					if($list['password'] != $hash)
-						header("location: home.php?".$list['password']);
+						header("location: home.php?");
 				}
 				else
 					header("location: home.php");
