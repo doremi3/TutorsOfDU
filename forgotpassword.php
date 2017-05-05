@@ -119,8 +119,39 @@
 							document.getElementById("valid_user").innerHTML = "Sorry! We do not recognize you! :("
 						}
 						else
+						{
+							
 							document.getElementById("valid_user").innerHTML = "Please check your email and follow the instructions! :)"
+							sendResetLink();
+						}
 						return false;
+				}
+				
+				
+				function sendResetLink()
+				{
+						var inpObj = document.getElementById("username");
+						var xhttp = new XMLHttpRequest();
+						var response;
+						var url="send_password_link.php";
+						var params = "username="+inpObj.value;
+						xhttp.open("POST",url,false);
+						xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+					
+						xhttp.onreadystatechange = function()
+						{
+							if(this.readyState==4 && this.status ==200)
+							{					
+								response =xhttp.responseText;
+								
+								
+								
+							}
+						}
+						
+						
+						xhttp.send(params);	
+						
 				}
 
 </script>

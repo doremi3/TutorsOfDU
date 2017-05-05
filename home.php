@@ -2,6 +2,7 @@
 
 
 	session_start();
+	$_SESSION['page']=0;
 	/*$login_session=$_SESSION['login_user'];
 	echo $login_session;</h1>*/
 	
@@ -34,7 +35,7 @@
 					<?php
 						include("config.php");
 						$sql = "SELECT username,name,department FROM user_info WHERE isAvailable = '1'";
-						$result = $conn->query($sql);
+						$result = mysqli_query($conn,$sql);
 						
 						$rows = $result->num_rows;
 						
@@ -51,17 +52,19 @@
 							
 							while($list = mysqli_fetch_array($result,MYSQLI_ASSOC))
 							{
-							
-								
+								$path="uploads/".$list['username'].".jpg";
+								if(!file_exists($path))
+									$path="uploads/default/avatar.jpg";
 							
 								echo "<article class=\"3u 12u$(xsmall) work-item\">";
-								echo "<a href=\"uploads/". $list['username'].".jpg \" class=\"image fit thumb\"><img src=\"uploads/".$list['username'].".jpg\" alt=\"\"></a>";
+								echo "<a href=".$path." class=\"image fit thumb\"><img src=".$path." alt=\"\"></a>";
 								echo "<a href=\"profile.php?username=".$list['username']."\" >".$list['name']."</a>";
                                                                // echo "	<h3> ".$list['name']." </h3>";
 								echo "	<p> ".$list['department']." </p>"	;															
 								echo "</article>";
 								$cnt = $cnt+1;
-								if($cnt == 8 )
+								//mysqli_data_seek($reslut,$cnt);
+								if($cnt == 4 )
 									break;
 							
 							}
@@ -71,7 +74,7 @@
 						
 						
 						<ul class="actions">
-                                                    <a href="view_all.php" class="button">View All</a>
+                                                    <a href=<?php $page = $_SESSION['page']+1; echo"view_all.php?page=".$page ?> class="button">View All</a>
 						</ul>
 					</section>
 

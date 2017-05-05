@@ -8,7 +8,7 @@
 		// Verify data
 		$username = $_GET['username']; // Set email variable
 		$hash = $_GET['code']; // Set hash variable
-		if($_SESSION['login_user']==$username)
+		if( $_SESSION['logged_in']==true && $_SESSION['login_user']==$username )
 		{
 			$sql = "SELECT hash, active FROM user_hash WHERE username = '$username'";
 			$result = $conn->query($sql);

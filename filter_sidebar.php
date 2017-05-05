@@ -22,10 +22,10 @@
 					
 					<section id = "filter">
 					
-						<form action="registered.php" method="post">
+						<form action="view_all.php" method="get">
 		  
 						<!--<h1>Sign Up</h1>-->
-						
+						<input type="hidden" name="page" value="1">
 						<fieldset>
 						<label for="category">Subject/Category:</label>
 						<select id="category" name="category">
@@ -45,9 +45,9 @@
 					
 						<fieldset>
 						<label for="department">Department:</label>
-						<select id="department" name="user_department">
+						<select id="department" name="department">
 						  <optgroup label="Engineering Faculty">
-							<option value="computer_science_and_engineering">Computer Science and Engineering</option>
+							<option value="Computer Science and Engineering">Computer Science and Engineering</option>
 							<option value="genetics">Genetics</option>            
 						  </optgroup>
 						  

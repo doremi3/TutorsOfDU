@@ -38,7 +38,7 @@
                                    <p id="username_validity"></p>
 				  
 				  <label for="password">Password:</label>
-				  <input type="password" name="password" id="password" maxlength = "20" required><br>
+				  <input type="password" name="password" id="password" maxlength = "40" required><br>
                                    <p id="password_validity"></p>
                                    
                                    <label for="phone">Phone:</label>

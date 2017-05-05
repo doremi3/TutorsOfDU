@@ -13,13 +13,26 @@
 						
 						
 							
-							<li>
+						<!--	<li>
 							<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><?php echo $_SESSION['login_user']?></button>														
 							</li>							
 							
 							<li>
-							<button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Log Out</button>														
-							</li>
+							<button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Log Out</button>	
+													
+							</li> -->
+							
+							<?php
+								$address="profile.php?username=".$_SESSION['login_user'];
+							?>
+							<div>
+							
+								<a href="home.php" class="button">Home</a>
+								
+								<a href=<?php echo $address; ?> class="button" ><?php echo $_SESSION['login_user'] ?></a>
+												
+								<a href="logout.php" class="button" >Log Out</a>
+							</div>
                                                         
                                          
 							
@@ -33,10 +46,8 @@
 								if($list['verified']==0)
 									echo "Please confirm your email address. Otherwise your profile will remain invisible to others.";
 							?>
+							
                                                 
-                                                <form action="logout.php">
-                                                    <input type="submit" value ="logout">
-                                                </form>
 					</section>
 
 

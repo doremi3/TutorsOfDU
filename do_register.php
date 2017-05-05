@@ -19,19 +19,23 @@ $target_dir = "uploads/";
 $target_file = $target_dir . $_FILES["fileToUpload"]["name"];
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
-$target_file = $target_dir . $username . "." . "jpg";
-if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-    
-    $width=100;
-    $height=100;
-    $image = imagecreatefromgd($target_file);
-    $new_image = imagecreatetruecolor($width, $height);
-    imagecopyresampled($new_image, $image, 0, 0, 0, 0, $width, $height, imagesx($image), imagesy($image));
-    $image = $new_image;
-    echo "";
-} else {
-    echo "Sorry, there was an error uploading your file.";
-}
+ $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+ if($check==true)
+		$target_file = $target_dir . $username . "." . "jpg";
+	else 
+	if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+		
+		$width=100;
+		$height=100;
+		$image = imagecreatefromgd($target_file);
+		$new_image = imagecreatetruecolor($width, $height);
+		imagecopyresampled($new_image, $image, 0, 0, 0, 0, $width, $height, imagesx($image), imagesy($image));
+		$image = $new_image;
+		echo "";
+	} else {
+		echo "Sorry, there was an error uploading your file.";
+	}
+ 
 
 $hash = md5( rand(0,1000) );
 $sql = "INSERT INTO user_info (username, email, name, password, gender,phone, phone_privacy,department,biography,verified,isAvailable) VALUES ('$username', '$email','$name', '$password','$gender', '$phone', '$phone_privacy','$department','$biography',0,1)";
@@ -49,7 +53,7 @@ $conn->close();
 
 function sendVerification($username, $email, $name, $hash)
 {
-    $subject = 'Tutors From DU Signup | Verification'; // Give the email a subject
+    $subject = 'Please confirm your email'; // Give the email a subject
 	
     $address="http://csedu.cf/tutorsfromdu/verify.php?username=".$username."&code=".$hash;
     $body = '
