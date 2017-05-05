@@ -1,5 +1,32 @@
 
-
+<?php
+	$deptfile = fopen("department_list.txt", "r") or die("Unable to open file!");
+	$deptlist = array();
+	while(!feof($deptfile)) 
+	{
+		array_push($deptlist,fgets($deptfile));
+	}
+	sort($deptlist);
+	fclose($deptfile);
+	
+	$areafile = fopen("area_list.txt", "r") or die("Unable to open file!");
+	$arealist = array();
+	while(!feof($areafile)) 
+	{
+		array_push($arealist,fgets($areafile));
+	}
+	sort($arealist);
+	fclose($areafile);
+	
+	$coursefile = fopen("course_list.txt", "r") or die("Unable to open file!");
+	$courselist = array();
+	while(!feof($coursefile)) 
+	{
+		array_push($courselist,fgets($coursefile));
+	}
+	sort($courselist);
+	fclose($coursefile);
+?>
 <head>
 		<title>Tutors of Dhaka University</title>
 		<meta charset="utf-8" />
@@ -26,35 +53,45 @@
 		  
 						<!--<h1>Sign Up</h1>-->
 						<input type="hidden" name="page" value="1">
-						<fieldset>
-						<label for="category">Subject/Category:</label>
-						<select id="category" name="category">
-						  <optgroup label="Science">
-							<option value="Physics">Physics</option>
-							<option value="chemistry">Chemistry</option>
-							<option value="biology">Bilogy</option>
-							<option value="mathematics">Mathematics</option>
-						  </optgroup>
+						
+						<label for="course">Course:</label>
+						<select id="course" name="course">
 						  
-						  <optgroup label="Commerce">
-							<option value="finance">Finance</option>
-							<option value="marketing">Marketing</option>
-						  </optgroup>
-						</select>										
+						  
+							<?php
+								
+								$courseLength = count($courselist);
+								for($i=0; $i<$courseLength; $i=$i+1)
+									echo"<option value=\"".$courselist[$i]."\">".$courselist[$i]."</option>";
+							?>
+						 
+						</select>									
 						
 					
-						<fieldset>
+					<label for="location">Location:</label>
+						<select id="location" name="location">
+						  
+						  
+							<?php
+								
+								$areaLength = count($arealist);
+								for($i=0; $i<$areaLength; $i=$i+1)
+									echo"<option value=\"".$arealist[$i]."\">".$arealist[$i]."</option>";
+							?>
+						 
+						</select>
+						
 						<label for="department">Department:</label>
 						<select id="department" name="department">
-						  <optgroup label="Engineering Faculty">
-							<option value="Computer Science and Engineering">Computer Science and Engineering</option>
-							<option value="genetics">Genetics</option>            
-						  </optgroup>
 						  
-						  <optgroup label="Business Facutly">
-							<option value="finance">Finance</option>
-							<option value="marketing">Marketing</option>
-						  </optgroup>
+						  
+							<?php
+								
+								$deptLength = count($deptlist);
+								for($i=0; $i<$deptLength; $i=$i+1)
+									echo"<option value=\"".$deptlist[$i]."\">".$deptlist[$i]."</option>";
+							?>
+						 
 						</select>
 						
 						<!--

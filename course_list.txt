@@ -1,0 +1,37 @@
+Bangla
+English
+Mathematics
+Higher Mathematics
+Physics
+Chemistry
+Biology
+General Science
+Accounting
+Finance and Banking
+Geography
+Islamic Studies
+Hindu Religious Studies
+Buddhist Religious Studies
+Christian Religious Studies
+Home Economics
+Agricultural Studies
+History
+Economics
+ICT
+Arabic
+Sanskrit
+Sports
+Drawing
+Singing
+Dancing
+Musical Instruments
+Programming Contest
+Social Science
+Business Studies
+Zoology
+Botany
+Statistics
+Computer
+Food and Nutrition
+Psychology
+Acting

@@ -63,7 +63,6 @@
 								echo "	<p> ".$list['department']." </p>"	;															
 								echo "</article>";
 								$cnt = $cnt+1;
-								//mysqli_data_seek($reslut,$cnt);
 								if($cnt == 4 )
 									break;
 							

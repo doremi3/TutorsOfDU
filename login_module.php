@@ -1,6 +1,13 @@
 <?php
 
-
+	$deptfile = fopen("department_list.txt", "r") or die("Unable to open file!");
+	$deptlist = array();
+	while(!feof($deptfile)) 
+	{
+		array_push($deptlist,fgets($deptfile));
+	}
+	sort($deptlist);
+	fclose($deptfile);
 	//session_start();
 	/*$login_session=$_SESSION['login_user'];
 	echo $login_session;</h1>*/
@@ -67,13 +74,14 @@
 				<label for="department">Department:</label>
 				<select id="department" name="department">
 				 
-					<option value="Computer Science And Engineering">Computer Science and Engineering</option>
-					<option value="Genetics">Genetics</option>            
-				
-				  
-				  
-					<option value="Finance">Finance</option>
-					<option value="Marketing">Marketing</option>
+					
+					
+					<?php
+								
+								$deptLength = count($deptlist);
+								for($i=0; $i<$deptLength; $i=$i+1)
+									echo"<option value=\"".$deptlist[$i]."\">".$deptlist[$i]."</option>";
+							?>
                 
 				  
 				</select>
