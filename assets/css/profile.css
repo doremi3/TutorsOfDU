@@ -1918,6 +1918,7 @@
 		border: 0;
 		display: inline-block;
 		position: relative;
+		
 	}
 
 		.image:before {
@@ -1939,6 +1940,7 @@
 
 		.image.thumb {
 			text-align: center;
+			
 		}
 
 			.image.thumb:after {
@@ -2002,6 +2004,7 @@
 		.image.fit {
 			display: block;
 			margin: 2em 2em 2em 2em;
+			
 			width: 12em;
                         height: 10em;
 		}
@@ -2502,15 +2505,55 @@
 			
 /*user_header*/
 .user_header {
-		
-		max-width: 30%;
-		margin-left: 70%;
-		padding: 1em 2em 2em 2em;
-		width: calc(30%);
+	
+				
+		background-color: Gainsboro ;
+		height: 115px;
+		background-position: top left;
+		max-width: 100%;
+		margin-left: 0%;
+		padding: 0em 2em 2em 2em;
+		width: calc(100%);
 
 		/*text-align: right;*/
 	}
+	
+	.logo {
+		
+		padding-top: .2em;
+		max-width: 10%;
+		margin-left: 0%;
+		width: calc(10%);
+		float : left;
+		
+	
+	}
+	
+	.title
+	{
+		padding: 1em 0em 0em 0em;
+		font-size: 30px;
+		max-width: 30%;
+		margin-left: 0%;
+		width: calc(30%);
+		float: left;
+		color: blue;
+	}
+	
+	.header_button {
+		
+		padding: 1em 0em 0em 0em;
+		max-width: 25%;
+		flex-grow: 1;
+		margin-left: 0%;
+		float: right;
+	
+	
+	}
 
+
+	
+	
 
 
 /* Main */
@@ -2528,28 +2571,70 @@
 	
 	.profile {
 		
-		max-width: 50%;
-		margin-left: 5%;
+		max-width: 100%;
+		margin-left: 0%;
 		width: calc(50%);
 		float : left;
 		
 	
 	}
+	
+	/* Profile */
+
+	
+	.header_info {
+		
+		padding: 0em 0em 0em 0em;
+		max-width: 100%;
+		margin-left: 0%;
+		width: calc(100%);
+	}
+	.profile_pic {
+		max-width: 20%;
+		margin-left: 0%;
+		float: left;
+	}
+	
+	.changepp{
+		margin-left: 25%;
+	}
+	
+	.basic_info {
+		
+		max-width: 50%;
+		margin-left: 40%;
+		flex-grow: 1;
+		
+		padding: 1em 0em 0em 0em;
+		
+	
+	}
+	.info {
+		
+		padding: 6em 0em 0em 2em;
+		
+	}
+	
 	.message {
 		
+		padding-top: 2em;
 		max-width: 40%;
 		flex-grow: 1;
 		margin-left: 10%;
+		
 		
 	
 	}
 	
 	.filter {
 		
+		
+		
 		max-width: 30%;
 		margin-left: 0%;
 		width: calc(30%);
 		float : left;
+	
 		
 	
 	}

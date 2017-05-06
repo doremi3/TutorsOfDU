@@ -27,25 +27,14 @@
 	sort($courselist);
 	fclose($coursefile);
 ?>
-<head>
-		<title>Tutors of Dhaka University</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
-		
-		<link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>  
 
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-	</head>
 	
-	<body id="top">
 
 		<!-- Header -->
-			<header id="header">
-				<div class="inner">
-					<a href="home.php" class="image avatar"><img src="images/avatar.jpg" alt="" /></a>
-					<h2><strong>Tutors of Dhaka University</strong></h2>
+			
+				<div class="filter">
+			<!--		<a href="home.php" class="image avatar"><img src="images/avatar.jpg" alt="" /></a> -->
+					<h2><strong>Find the right tutor for you!</strong></h2>
 					
 					<section id = "filter">
 					
@@ -55,7 +44,7 @@
 						<input type="hidden" name="page" value="1">
 						
 						<label for="course">Course:</label>
-						<select id="course" name="course">
+						<select id="course" name="course" multiple>
 						  
 						  
 							<?php
@@ -69,7 +58,7 @@
 						
 					
 					<label for="location">Location:</label>
-						<select id="location" name="location">
+						<select id="location" name="location" multiple>
 						  
 						  
 							<?php
@@ -102,9 +91,9 @@
 						-->
 						
 						</fieldset>
-						<button type="submit">Filter</button>
+						<input type="submit">Filter</button>
 					  </form>
 					</section>
 					
 				</div>
-			</header>
+			

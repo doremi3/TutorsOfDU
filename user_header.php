@@ -1,4 +1,73 @@
 
+<?php
+								$address="profile.php?username=".$_SESSION['login_user'];
+							?>
+							
+<?php
+								$username = $_SESSION['login_user'];
+								include"config.php";
+								$sql = "SELECT verified FROM user_info WHERE username = '$username'";
+								$result = $conn->query($sql);
+								$list = mysqli_fetch_array($result,MYSQLI_ASSOC);
+							/*	if($list['verified']==0)
+									echo "Please confirm your email address. Otherwise your profile will remain invisible to others.";*/
+							?>
+
+<div class="user_header" id = "user_header">
+
+						
+						<div class = "logo" >
+						
+							<a href="home.php" class="image avatar"><img src="images/avatar.jpg" alt="" /></a>
+						</div>
+						
+						<div class = "title" >
+							<a href="home.php" class="image avatar"><font color = "blue">Tutors from<br> University of Dhaka</font></a>
+						</div>  
+						
+						<div style="float: right;">
+							
+								<a href="home.php" class="button">Home</a>
+								
+								<a href=<?php echo $address; ?> class="button" ><?php echo $_SESSION['login_user'] ?></a>
+												
+								<a href="logout.php" class="button" >Log Out</a>
+							</div>
+			</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+/*
+********************************88
 <section id="one">
 						<header class="major">
 						<!--
@@ -51,4 +120,5 @@
 					</section>
 
 
-
+*/
+?>

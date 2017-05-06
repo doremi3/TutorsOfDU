@@ -6,7 +6,7 @@
 	$from = $_POST['name'];
 	$email = $_POST['email'];
 	$message = $_POST['message'];
-	
+
 	
 	$to = $_POST['to'];
 	$sql = "SELECT email FROM user_info WHERE username = '$to'";
@@ -31,6 +31,7 @@
 	
 	sendEmail($to,$subject,$body);
 	
+	//echo "Message has been sent! :)";
 	
 	
 	

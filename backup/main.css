@@ -2499,69 +2499,16 @@
 			#footer .copyright li a {
 				color: inherit;
 			}
-			
-/*user_header*/
-.user_header {
-		
-		max-width: 30%;
-		margin-left: 70%;
-		padding: 1em 2em 2em 2em;
-		width: calc(30%);
-
-		/*text-align: right;*/
-	}
-
-
 
 /* Main */
 
-	
-	.main{
-		
+	#main {
+		margin-left: 30%;
 		max-width: 100%;
-		padding: 1em 2em 2em 2em;
-		width: calc(100%);
-		display: flex;
+		padding: 2em 2em 2em 2em;
+		width: calc(100% - 30%);
 		/*text-align: right;*/
 	}
-	
-	
-	.profile {
-		
-		max-width: 50%;
-		margin-left: 5%;
-		width: calc(50%);
-		float : left;
-		
-	
-	}
-	.message {
-		
-		max-width: 40%;
-		flex-grow: 1;
-		margin-left: 10%;
-		
-	
-	}
-	
-	.filter {
-		
-		max-width: 30%;
-		margin-left: 0%;
-		width: calc(30%);
-		float : left;
-		
-	
-	}
-	.view {
-		
-		max-width: 60%;
-		flex-grow: 1;
-		margin-left: 5%;
-		
-	
-	}
-
 	
 	#one{
 		text-align: right;

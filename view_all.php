@@ -3,7 +3,7 @@
 
 	session_start();
 	$_SESSION['page']=$_GET['page'];
-	$per_page=8;
+	$per_page=9;
 	/*$login_session=$_SESSION['login_user'];
 	echo $login_session;</h1>*/
 	
@@ -14,22 +14,22 @@
         <meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/profile.css" />
 		
 		<link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>  
     </head>
 
-	<?php include"filter_sidebar.php" ?>
-		<!-- Main -->
-			<div id="main">
-
-				<!-- One -->
-					<?php 
+	<?php 
                                         if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true)
                                             include"user_header.php";
                                          else
                                              include"login_header.php"
                                         ?>
+		<!-- Main -->
+			<div class="main">
+
+				<!-- One -->
+					
 
 				<!-- Two -->
 				
@@ -62,7 +62,9 @@
 						
 						
 					?>
-					<section id="two">
+					<?php include"filter_sidebar.php" ?>
+			
+			<div class = "view">
 						<h2>Some of the tutors</h2>
 													
 							<?php 
@@ -75,7 +77,7 @@
 								if(!file_exists($path))
 									$path="uploads/default/avatar.jpg";
 							
-								echo "<article class=\"3u 12u$(xsmall) work-item\">";
+								echo "<article class=\"4u 12u$(xsmall) work-item\">";
 								echo "<a href=".$path." class=\"image fit thumb\"><img src=".$path." alt=\"\"></a>";
 								echo "<a href=\"profile.php?username=".$list['username']."\" >".$list['name']."</a>";
                                                                // echo "	<h3> ".$list['name']." </h3>";
@@ -121,8 +123,8 @@
 				
 				 
 						</ul>
-					</section>
-
+					
+					</div>
 				
 					
 					

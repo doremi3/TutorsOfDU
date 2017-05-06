@@ -13,22 +13,23 @@
         <meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/profile.css" />
 		
 		<link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>  
     </head>
 
-	<?php include"filter_sidebar.php" ?>
-		<!-- Main -->
-			<div id="main">
-
-				<!-- One -->
-					<?php 
+	
+	<?php 
                                         if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true)
                                             include"user_header.php";
                                          else
                                              include"login_header.php"
                                         ?>
+		<!-- Main -->
+			<section class="main">
+
+				<!-- One -->
+					
 
 				<!-- Two -->
 				
@@ -44,7 +45,10 @@
 						
 						
 					?>
-					<section id="two">
+					
+					<?php include"filter_sidebar.php" ?>
+				
+					<div class = "view">
 						<h2>Some of the tutors</h2>
 													
 							<?php 
@@ -56,14 +60,14 @@
 								if(!file_exists($path))
 									$path="uploads/default/avatar.jpg";
 							
-								echo "<article class=\"3u 12u$(xsmall) work-item\">";
+								echo "<article class=\"4u 12u$(xsmall) work-item\">";
 								echo "<a href=".$path." class=\"image fit thumb\"><img src=".$path." alt=\"\"></a>";
 								echo "<a href=\"profile.php?username=".$list['username']."\" >".$list['name']."</a>";
                                                                // echo "	<h3> ".$list['name']." </h3>";
 								echo "	<p> ".$list['department']." </p>"	;															
 								echo "</article>";
 								$cnt = $cnt+1;
-								if($cnt == 4 )
+								if($cnt == 3 )
 									break;
 							
 							}
@@ -75,48 +79,13 @@
 						<ul class="actions">
                                                     <a href=<?php $page = $_SESSION['page']+1; echo"view_all.php?page=".$page ?> class="button">View All</a>
 						</ul>
-					</section>
-
-				<!-- Three -->
-					<!-- <section id="three">
-						<h2>Get In Touch</h2>
-						<p>Want to send us some feedback/suggestion or report any bug?</p>
-						<div class="row">
-							<div class="8u 12u$(small)">
-								<form method="post" action="#">
-									<div class="row uniform 50%">
-										<div class="6u 12u$(xsmall)"><input type="text" name="name" id="name" placeholder="Name" /></div>
-										<div class="6u$ 12u$(xsmall)"><input type="email" name="email" id="email" placeholder="Email" /></div>
-										<div class="12u$"><textarea name="message" id="message" placeholder="Message" rows="4"></textarea></div>
-									</div>
-								</form>
-								<ul class="actions">
-									<li><input type="submit" value="Send Message" /></li>
-								</ul>
-							</div>
-							<div class="4u$ 12u$(small)">
-								<ul class="labeled-icons">
-									<li>
-										<h3 class="icon fa-home"><span class="label">Address</span></h3>
-										CSE Department<br />
-										University of Dhaka<br />
-										Bangladesh
-									</li>
-									<li>
-										<h3 class="icon fa-mobile"><span class="label">Phone</span></h3>
-										0185-2808950
-									</li>
-									<li>
-										<h3 class="icon fa-envelope-o"><span class="label">Email</span></h3>
-										<a href="#">tutorsofdu@gmail.com</a>
-									</li>
-								</ul>
-							</div>
 						</div>
-					</section> -->
+					
+
+				
 					
 					
-			</div>
+			</section>
 
 		<!-- Footer -->
 			<?php include"footer.php" ?>
@@ -145,5 +114,4 @@
 		
                 
 
-	</body>
 </html>
