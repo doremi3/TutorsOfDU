@@ -9,8 +9,8 @@
 								$sql = "SELECT verified FROM user_info WHERE username = '$username'";
 								$result = $conn->query($sql);
 								$list = mysqli_fetch_array($result,MYSQLI_ASSOC);
-							/*	if($list['verified']==0)
-									echo "Please confirm your email address. Otherwise your profile will remain invisible to others.";*/
+								if($list['verified']==0)
+									echo "<center>Please confirm your email address. Otherwise your profile will remain invisible to others.</center>";
 							?>
 
 <div class="user_header" id = "user_header">
@@ -25,6 +25,7 @@
 							<a href="home.php" class="image avatar"><font color = "blue">Tutors from<br> University of Dhaka</font></a>
 						</div>  
 						
+						<br><br>
 						<div style="float: right;">
 							
 								<a href="home.php" class="button">Home</a>
