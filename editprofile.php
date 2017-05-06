@@ -120,16 +120,16 @@
 					<section class = "info" >
 					
 					<p> <font size="5">Change Password</font>
-					<input type="password" placeholder = "Leave empty if you do not want to change." >
+					<input type="password" placeholder = "Leave it empty if you do not want to change." name="new_password" maxlength="40">
 					
 					<p> <font size="5">Email</font>
-					<input type="email" value = <?php echo $list['email']; ?> id = "email">
+					<input type="email" value = <?php echo $list['email']; ?> id = "email" name = "email" maxlength="50" >
 					
 					<p> <font size="5"> About me</font>
 					<textarea name = "bio" placeholder = <?php echo $list['biography']; ?> > </textarea>
 					
 					<p> <font size="5"> Preferred subjects: </font>
-					<select id="course" name="course" multiple>
+					<select id="course" name="course" style='height: 140px;' multiple>
 						  
 						 <?php
 							
@@ -141,7 +141,7 @@
 					</select>									
 					
 					<p> <font size="5"> Preferred locations: </font>
-					<select id="location" name="location" multiple>
+					<select id="location" name="location" style='height: 140px;' multiple>
 						  
 						 <?php
 								
@@ -153,8 +153,11 @@
 					</select>
 					<p> <font size="5"> Minimum expected salary per month:
 					<input type = "number" name = "salary" id = "salary">
-					<button type="submit" value="submit">Save Changes</button>
+					<p> <font size="5">Your current password:
+					<input type = "password" name = "curr_password" id = "curr_password" maxlength="40" required>
+					<button type="submit" value="submit" name="submit" >Save Changes</button>
 					</section>
+					
 					
 					
 				</form>	

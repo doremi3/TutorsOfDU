@@ -44,7 +44,7 @@
 						<input type="hidden" name="page" value="1">
 						
 						<label for="course">Course:</label>
-						<select id="course" name="course" multiple>
+						<select id="course" name="course" style='height: 120px;' multiple>
 						  
 						  
 							<?php
@@ -58,7 +58,7 @@
 						
 					
 					<label for="location">Location:</label>
-						<select id="location" name="location" multiple>
+						<select id="location" name="location" style='height: 120px;' multiple>
 						  
 						  
 							<?php
@@ -91,7 +91,7 @@
 						-->
 						
 						</fieldset>
-						<input type="submit">Filter</button>
+						<button type="submit">Filter</button>
 					  </form>
 					</section>
 					
