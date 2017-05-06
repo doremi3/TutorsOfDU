@@ -62,7 +62,7 @@
 						?>
 					</font>
 					</a>
-					<br>
+					<br><br>
 					
 					<font size="5">
 						<?php 
@@ -85,7 +85,7 @@
 					<section class = "info" >
 					
 
-					
+					<br>
 					<p> <font size="5"> About <?php echo $list['name']; ?> </font> <br/> <font size="4"><?php echo $list['biography']; ?></font> </p>
 					
 					<p> <font size="5"> Preferred subjects: </font> <br/> <font size="4">Physics</font> </p>

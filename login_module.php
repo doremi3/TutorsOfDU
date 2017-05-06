@@ -32,23 +32,23 @@
 				
 				<fieldset>
 				  <legend><span class="number">1</span>Your basic info</legend>
-				  <label for="name">Name:</label>
+				  <label for="name"><font size="4">Name:</font></label>
 				  <input type="text" name="name" id = "name" maxlength = "50" required><br>
                                    <p id="name_validity"></p>
 				  
-				  <label for="mail">Email:</label>
+				  <label for="mail"><font size="4">Email:</font></label>
 				  <input type="email" name="email" id="email" maxlength = "50" required><br>
                                    <p id="email_validity"></p>
                                    
-                                   <label for="username">Username:</label>
+                                   <label for="username"><font size="4">Username:</font></label>
 				  <input type="text" name="username" id = "username" maxlength = "15" required><br>
                                    <p id="username_validity"></p>
 				  
-				  <label for="password">Password:</label>
+				  <label for="password"><font size="4">Password:</font></label>
 				  <input type="password" name="password" id="password" maxlength = "40" required><br>
                                    <p id="password_validity"></p>
                                    
-                                   <label for="phone">Phone:</label>
+                                   <label for="phone"><font size="4">Phone:</font></label>
                                    <input type="tel" name="phone" id = "phone">
                                    
                                    <label for="phone_privacy"></label>
@@ -58,20 +58,20 @@
                                         <option value=1 >Everyone</option>
                                     </select><br>
 				  
-				  <label>Gender:</label>
+				  <label><font size="4">Gender:</font></label>
 				  <input type="radio" id="Male" value="Male" name="gender" checked><label for="Male" class="light">Male</label><br>
 				  <input type="radio" id="Female" value="Female" name="gender" ><label for="Female" class="light">Female</label>
 				</fieldset>
 				
 				<fieldset>
 				  <legend><span class="number">2</span>Your profile</legend>
-				  <label for="bio">Biography:</label>
+				  <label for="bio"><font size="4">Biography and experience:</font></label>
                                   <textarea id="biography" name="biography"></textarea>
                                   
                   
 				</fieldset>
 				<fieldset>
-				<label for="department">Department:</label>
+				<label for="department"><font size="4">Department:</font></label>
 				<select id="department" name="department">
 				 
 					
@@ -82,16 +82,46 @@
 								for($i=0; $i<$deptLength; $i=$i+1)
 									echo"<option value=\"".$deptlist[$i]."\">".$deptlist[$i]."</option>";
 							?>
-                
+		
 				  
 				</select>
 				
+				<label for="course"><font size="4">Preferred Courses:</font></label>
+						<select id="course" name="course[]" style='height: 100px;' multiple>
+						  
+						  
+							<?php
+								
+								$courseLength = count($courselist);
+								for($i=0; $i<$courseLength; $i=$i+1)
+									echo"<option value=\"".$courselist[$i]."\">".$courselist[$i]."</option>";
+							?>
+						 
+						</select>									
+						
+					
+					<label for="location"><font size="4">Preferred Locations:</font></label>
+						<select id="location" name="location[]" style='height: 80px;' multiple>
+						  
+						  
+							<?php
+								
+								$areaLength = count($arealist);
+								for($i=0; $i<$areaLength; $i=$i+1)
+									echo"<option value=\"".$arealist[$i]."\">".$arealist[$i]."</option>";
+							?>
+						 
+						</select>
+						
+					
+					<label for="salary"><font size="4">Minimum salary per month:</font></label>
+					<input type = "number" name = "salary" id = "salary">
 				
                                
 				</fieldset>
                                 
                                 <fieldset>
-                                    <label for="upload_image">Upload photo:</label>
+                                    <label for="upload_image"><font size="4">Upload photo:</font></label>
                                      <input type="file" name="fileToUpload" id="fileToUpload">
                                 </fieldset>
 				<button type="submit" value="Submit">Sign up</button>
@@ -109,14 +139,14 @@
 				
 				<fieldset>
 				  
-				  <label for="username">Username:</label>
+				  <label for="username"><font size="4">Username:</font></label>
 				  <input type="text" id="login_username" name="username" required>				  
 				  
-				  <label for="password">Password:</label>
+				  <label for="password"><font size="4">Password:</font></label>
 				  <input type="password" id="login_password" name="password" required><br>
-				  <p id="login_validity"></p>
+				  <p id="login_validity"> </p>
 				  
-				  <a href="forgotpassword.php" >Forgot your password?</a>
+				  <a href="forgotpassword.php" ><font size="5">Forgot your password?</font></a>
 				  
 				</fieldset>
 				

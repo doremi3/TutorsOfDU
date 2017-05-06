@@ -35,22 +35,43 @@
 				
 					<?php
 						include("config.php");
-						if(isset($_GET['category']))
-							$category[]=$_GET['category'];
-						if(isset($_GET['department']))
-							$department=$_GET['department'];
-						else
-							$department="";
-						$sql = "SELECT username,name,department FROM user_info WHERE isAvailable = '1'";
-						if(isset($_GET['category']))
-						{
-							$category[]=$_GET['category'];
-						}
+						
+			
+						$sql = "SELECT username FROM user_info WHERE isAvailable = '1'";
+				
 						if(isset($_GET['department']))
 						{
+							$sql = $sql." AND ( ";
 							$department=$_GET['department'];
-							 $sql=$sql."and department='$department'";
+							foreach ($department as $curr)
+								$sql=$sql." department='$curr' OR ";
+							$sql=$sql." department='$curr' ) ";
 						}
+						$old= $sql;
+						if(isset($_GET['location']))
+						{
+							$sql = "SELECT username FROM user_location WHERE ( ";
+							$location=$_GET['location'];
+							foreach ($location as $curr)
+								$sql=$sql." location = '$curr' OR ";
+							$sql=$sql." location = '$curr' ) ";
+							
+							$sql=$sql." and username IN ( ".$old." )";
+						}
+						
+						$old= $sql;
+						if(isset($_GET['course']))
+						{
+							$sql = "SELECT username FROM user_course WHERE ( ";
+							$course=$_GET['course'];
+							foreach ($course as $curr)
+								$sql=$sql." course = '$curr' OR ";
+							$sql=$sql." course = '$curr' ) ";
+							
+							$sql=$sql." and username IN ( ".$old." )";
+						}
+						
+					//	echo $sql;
 						$result = mysqli_query($conn,$sql);
 						
 						$rows = $result->num_rows;
@@ -70,8 +91,13 @@
 							<?php 
 							$cnt=0;
 							
-							while($list = mysqli_fetch_array($result,MYSQLI_ASSOC))
+							while($list_ini = mysqli_fetch_array($result,MYSQLI_ASSOC))
 							{
+								$curr=$list_ini['username'];
+								$sql = " SELECT * FROM user_info WHERE username = '$curr' ";
+								$result2 = $conn->query($sql);
+								
+								$list = mysqli_fetch_array($result2,MYSQLI_ASSOC);
 							
 								$path="uploads/".$list['username'].".jpg";
 								if(!file_exists($path))
@@ -79,9 +105,9 @@
 							
 								echo "<article class=\"4u 12u$(xsmall) work-item\">";
 								echo "<a href=".$path." class=\"image fit thumb\"><img src=".$path." alt=\"\"></a>";
-								echo "<a href=\"profile.php?username=".$list['username']."\" >".$list['name']."</a>";
+								echo "<a href=\"profile.php?username=".$list['username']."\" >"."<font size=\"4\">".$list['name']."</font> </a>";
                                                                // echo "	<h3> ".$list['name']." </h3>";
-								echo "	<p> ".$list['department']." </p>"	;															
+								echo "	<p> "."<font size = \"2\" >".$list['department']."</font> </p>"	;															
 								echo "</article>";
 								$cnt = $cnt+1;
 								//mysqli_data_seek($reslut,$cnt);

@@ -1,5 +1,34 @@
 
+<?php
 
+$deptfile = fopen("department_list.txt", "r") or die("Unable to open file!");
+	$deptlist = array();
+	while(!feof($deptfile)) 
+	{
+		array_push($deptlist,fgets($deptfile));
+	}
+	sort($deptlist);
+	fclose($deptfile);
+	
+	$areafile = fopen("area_list.txt", "r") or die("Unable to open file!");
+	$arealist = array();
+	while(!feof($areafile)) 
+	{
+		array_push($arealist,fgets($areafile));
+	}
+	sort($arealist);
+	fclose($areafile);
+	
+	$coursefile = fopen("course_list.txt", "r") or die("Unable to open file!");
+	$courselist = array();
+	while(!feof($coursefile)) 
+	{
+		array_push($courselist,fgets($coursefile));
+	}
+	sort($courselist);
+	fclose($coursefile);
+
+?>
 
 <div class="user_header" id = "user_header">
 

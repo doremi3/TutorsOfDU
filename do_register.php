@@ -13,6 +13,9 @@ $photo = "photo";
 $gender = $_POST["gender"];
 $department = $_POST["department"];
 $biography = $_POST["biography"];
+$course = $_POST['course'];
+$location = $_POST['location'];
+$salary = $_POST['salary'];
 
 
 $target_dir = "uploads/";
@@ -44,6 +47,26 @@ if ($conn->query($sql) == TRUE && $conn->query($hash_sql)==TRUE ) {
     $username = $_POST["username"];
     $_SESSION['login_user'] = $username;
     $_SESSION['logged_in'] = true;
+	
+	$sql = "INSERT INTO user_salary (username, salary) VALUES ('$username', '$salary')";
+	$conn->query($sql);
+	
+	foreach ($course as $curr)
+	{
+		$primary = $username."#".$curr;
+		$sql = "INSERT INTO user_course (username_course, username, course) VALUES ('$primary', '$username', '$curr')";
+		$conn->query($sql);
+	
+	}
+	
+	foreach ($location as $curr)
+	{
+		$primary = $username."#".$curr;
+		$sql = "INSERT INTO user_location (username_location, username, location) VALUES ('$primary', '$username', '$curr')";
+		$conn->query($sql);
+	
+	}
+	
 	sendVerification($username, $email, $name, $hash);
     header("location: home.php");
 } else {

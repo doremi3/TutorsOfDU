@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2017 at 09:23 PM
+-- Generation Time: May 06, 2017 at 07:28 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -23,6 +23,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `user_course`
+--
+
+CREATE TABLE `user_course` (
+  `username_course` varchar(50) NOT NULL,
+  `username` varchar(15) NOT NULL,
+  `course` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_course`
+--
+
+INSERT INTO `user_course` (`username_course`, `username`, `course`) VALUES
+('shizuka#Array', 'shizuka', '500'),
+('testu#Array', 'testu', '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user_hash`
 --
 
@@ -38,7 +58,9 @@ CREATE TABLE `user_hash` (
 
 INSERT INTO `user_hash` (`username`, `hash`, `active`) VALUES
 ('maliha', 'f90f2aca5c640289d0a29417bcb63a37', 1),
-('rakhi', '2421fcb1263b9530df88f7f002e78ea5', 0);
+('rakhi', '2421fcb1263b9530df88f7f002e78ea5', 0),
+('shizuka', 'a64c94baaf368e1840a1324e839230de', 1),
+('testu', 'c3c59e5f8b3e9753913f4d435b53c308', 1);
 
 -- --------------------------------------------------------
 
@@ -78,11 +100,50 @@ INSERT INTO `user_info` (`username`, `email`, `name`, `password`, `gender`, `pho
 ('roro', 'roro@teddy.com', 'roro bear', 'roro', 'Male', '01852808950', 0, 'Computer Science And Engineering', '', 0, 1),
 ('s.ruby', 'shirin@ruby.com', 'Shirin Akter', 'ruby', 'Female', '', 0, 'Genetics', '', 0, 1),
 ('shahreen', 'shahreen@salim.com', 'Shahreen Salim', 'salim', 'Female', '09876543243', 0, 'Computer Science And Engineering', 'B-)', 0, 1),
-('tanz', 'tanzir@pial.com', 'Tanzir Islam', 'tanzir', 'Male', '', 0, 'Computer Science And Engineering', '', 0, 1);
+('shizuka', 'shizuka@nobi.com', 'Shizuka Minamoto', 'shizuka', 'Female', '', 0, 'Department of Bengali\r\n', 'lala', 0, 1),
+('tanz', 'tanzir@pial.com', 'Tanzir Islam', 'tanzir', 'Male', '', 0, 'Computer Science And Engineering', '', 0, 1),
+('testu', 'test@yacom', 'test test', 'mahir', 'Male', '', 0, 'Confucius Institute', '', 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_location`
+--
+
+CREATE TABLE `user_location` (
+  `username_location` varchar(50) NOT NULL,
+  `username` varchar(15) NOT NULL,
+  `location` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_salary`
+--
+
+CREATE TABLE `user_salary` (
+  `username` varchar(15) NOT NULL,
+  `salary` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_salary`
+--
+
+INSERT INTO `user_salary` (`username`, `salary`) VALUES
+('shizuka', 500),
+('testu', 0);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `user_course`
+--
+ALTER TABLE `user_course`
+  ADD PRIMARY KEY (`username_course`);
 
 --
 -- Indexes for table `user_hash`
@@ -96,6 +157,18 @@ ALTER TABLE `user_hash`
 ALTER TABLE `user_info`
   ADD PRIMARY KEY (`username`),
   ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `user_location`
+--
+ALTER TABLE `user_location`
+  ADD PRIMARY KEY (`username_location`);
+
+--
+-- Indexes for table `user_salary`
+--
+ALTER TABLE `user_salary`
+  ADD PRIMARY KEY (`username`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

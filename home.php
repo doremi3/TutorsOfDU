@@ -62,7 +62,7 @@
 							
 								echo "<article class=\"4u 12u$(xsmall) work-item\">";
 								echo "<a href=".$path." class=\"image fit thumb\"><img src=".$path." alt=\"\"></a>";
-								echo "<a href=\"profile.php?username=".$list['username']."\" >".$list['name']."</a>";
+								echo "<a href=\"profile.php?username=".$list['username']."\" >"."<font size=\"4\">".$list['name']."</font> </a>";
                                                                // echo "	<h3> ".$list['name']." </h3>";
 								echo "	<p> ".$list['department']." </p>"	;															
 								echo "</article>";

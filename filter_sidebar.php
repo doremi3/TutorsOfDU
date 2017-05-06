@@ -43,8 +43,8 @@
 						<!--<h1>Sign Up</h1>-->
 						<input type="hidden" name="page" value="1">
 						
-						<label for="course">Course:</label>
-						<select id="course" name="course" style='height: 120px;' multiple>
+						<label for="course"><font size="5">Course:</font></label>
+						<select id="course" name="course[]" style='height: 80px;' multiple>
 						  
 						  
 							<?php
@@ -57,8 +57,8 @@
 						</select>									
 						
 					
-					<label for="location">Location:</label>
-						<select id="location" name="location" style='height: 120px;' multiple>
+					<label for="location"><font size="5">Location:</font></label>
+						<select id="location" name="location[]" style='height: 80px;' multiple>
 						  
 						  
 							<?php
@@ -70,8 +70,8 @@
 						 
 						</select>
 						
-						<label for="department">Department:</label>
-						<select id="department" name="department">
+						<label for="department"><font size="5">Department:</font></label>
+						<select id="department" name="department[]" style='height: 80px;' multiple>
 						  
 						  
 							<?php
