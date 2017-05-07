@@ -36,7 +36,7 @@
 				
 					<?php
 						include("config.php");
-						$sql = "SELECT username,name,department FROM user_info WHERE isAvailable = '1'";
+						$sql = "SELECT username,name,department FROM user_info WHERE isAvailable = '1' AND verified = 1";
 						$result = mysqli_query($conn,$sql);
 						
 						$rows = $result->num_rows;
