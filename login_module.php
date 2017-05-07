@@ -34,19 +34,19 @@
 				  <legend><span class="number">1</span>Your basic info</legend>
 				  <label for="name"><font size="4">Name:</font></label>
 				  <input type="text" name="name" id = "name" maxlength = "50" required><br>
-                                   <p id="name_validity"></p>
+                                   
 				  
 				  <label for="mail"><font size="4">Email:</font></label>
 				  <input type="email" name="email" id="email" maxlength = "50" required><br>
-                                   <p id="email_validity"></p>
+                                   <font color="red"><p id="email_validity"></p></font>
                                    
                                    <label for="username"><font size="4">Username:</font></label>
 				  <input type="text" name="username" id = "username" maxlength = "15" required><br>
-                                   <p id="username_validity"></p>
+                                   <font color="red"><p id="username_validity"></p></font>
 				  
 				  <label for="password"><font size="4">Password:</font></label>
 				  <input type="password" name="password" id="password" maxlength = "40" required><br>
-                                   <p id="password_validity"></p>
+                                   
                                    
                                    <label for="phone"><font size="4">Phone:</font></label>
                                    <input type="tel" name="phone" id = "phone">
@@ -144,7 +144,7 @@
 				  
 				  <label for="password"><font size="4">Password:</font></label>
 				  <input type="password" id="login_password" name="password" required><br>
-				  <p id="login_validity"> </p>
+				  <font color="red"><p id="login_validity"> </p></font>
 				  
 				  <a href="forgotpassword.php" ><font size="5">Forgot your password?</font></a>
 				  

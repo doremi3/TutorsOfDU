@@ -23,9 +23,9 @@ $target_file = $target_dir . $_FILES["fileToUpload"]["name"];
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
  $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
- if($check==true)
+ if($check==true){
 		$target_file = $target_dir . $username . "." . "jpg";
-	else 
+	
 	if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 		
 		$width=100;
@@ -35,7 +35,7 @@ $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 		imagecopyresampled($new_image, $image, 0, 0, 0, 0, $width, $height, imagesx($image), imagesy($image));
 		$image = $new_image;
 		echo "";
-	} else {
+ }} else {
 		echo "Sorry, there was an error uploading your file.";
 	}
  
