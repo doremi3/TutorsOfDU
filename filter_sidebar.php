@@ -1,4 +1,10 @@
-
+<html>
+	<head>
+	
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+	</head>
 <?php
 	$deptfile = fopen("department_list.txt", "r") or die("Unable to open file!");
 	$deptlist = array();
@@ -96,4 +102,4 @@
 					</section>
 					
 				</div>
-			
+</html>		

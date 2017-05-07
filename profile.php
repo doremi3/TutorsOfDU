@@ -158,38 +158,41 @@
 						var geocoder = new google.maps.Geocoder();						
 						geocodeAddress(geocoder, map);						
 					  }
-
-					  function geocodeAddress(geocoder, resultsMap) {
 					  
-						var address = "Shantinagar, Dhaka"; // HERE GOES THE ADDRESS
-						geocoder.geocode({'address': address}, function(results, status) {
-						  if (status === 'OK') {
-							resultsMap.setCenter(results[0].geometry.location);
-							var marker = new google.maps.Marker({
-							  map: resultsMap,
-							  position: results[0].geometry.location
-							});
-						  } else {
-							alert('Geocode was not successful for the following reason: ' + status);
-						  }
-						});
-						
-						address = "Motijheel, Dhaka"; // HERE GOES THE ADDRESS
-						geocoder.geocode({'address': address}, function(results, status) {
-						  if (status === 'OK') {
-							resultsMap.setCenter(results[0].geometry.location);
-							var marker = new google.maps.Marker({
-							  map: resultsMap,
-							  position: results[0].geometry.location
-							});
-						  } else {
-							alert('Geocode was not successful for the following reason: ' + status);
-						  }
-						});
-						
-						
-					  }
-					</script>
+					  </script>
+					  
+					<?php  
+					
+						$sql = "SELECT location FROM user_location WHERE username = '$username' ";
+						$currresult=$conn->query($sql);
+					
+					while($currlist = mysqli_fetch_array($currresult,MYSQLI_ASSOC))
+					{					
+							$curr= $currlist['location'];
+							//$curr = "Badda";
+							$curr=$curr.",Dhaka;";
+							echo "<script>
+							  function geocodeAddress(geocoder, resultsMap) {
+								
+								
+								var address = \"".$curr."\"
+								geocoder.geocode({'address': address}, function(results, status) {
+								  if (status === 'OK') {
+									resultsMap.setCenter(results[0].geometry.location);
+									var marker = new google.maps.Marker({
+									  map: resultsMap,
+									  position: results[0].geometry.location
+									});
+								  } else {
+									alert('Geocode was not successful for the following reason: ' + status);
+								  }
+								});
+								
+								
+							  }
+							</script>";
+					}
+					?>
 					<script async defer
 					src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrW80WjP5pNfuVkfkGhMwyYvATjGf4RJc&callback=initMap">
 					</script>
