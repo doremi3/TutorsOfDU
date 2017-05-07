@@ -14,7 +14,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/profile.css" />
-		
+		<title><?php 
+			$usr = $_GET['username'];
+			$sql = "SELECT * FROM user_info WHERE username= '$usr'"; 
+			$result=$conn->query($sql);
+			$list=mysqli_fetch_array($result,MYSQLI_ASSOC);
+			echo $list['name']."|Tutors from DU"; ?></title>
 		<link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>  
 		<style>
 		  #map {		  
