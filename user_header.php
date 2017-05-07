@@ -10,7 +10,7 @@
 								$result = $conn->query($sql);
 								$list = mysqli_fetch_array($result,MYSQLI_ASSOC);
 								if($list['verified']==0)
-									echo "<center>Please confirm your email address. Otherwise your profile will remain invisible to others.</center>";
+									echo "<center> <font color=\"red\">Please confirm your email address. Otherwise your profile will remain invisible to others.</font></center>";
 							?>
 
 <div class="user_header" id = "user_header">
