@@ -16,6 +16,12 @@
 		<link rel="stylesheet" href="assets/css/profile.css" />
 		
 		<link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>  
+		<style>
+		  #map {		  
+			height: 215px;
+			width : 100%;		
+		  }	  
+		</style>
     </head>
 
 	
@@ -45,16 +51,16 @@
 					<section class = "header_info" >
 					
 					<div class = "profile_pic" >
-					<div class="3u"><span class="image fit"><img src= <?php echo $path; ?> alt="" /></span>  </div>
+					<div class="3u"><span class="image"><img src= <?php echo $path; ?> alt="" width = "250" height="250" /></span>  </div>
 					
 					<?php
 						if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true && isset($_SESSION['login_user']) && $_SESSION['login_user']==$list['username'])
-							echo "<div class = \"changepp\" > <a href=\"editprofile.php?username=".$_SESSION['login_user']."\" class=\"button\">Edit Profile</button> </a> </div>";
+							echo "<br> <div class = \"changepp\" > <a href=\"editprofile.php?username=".$_SESSION['login_user']."\" class=\"button\">Edit Profile </a> </div>";
 					?>
 	
 					</div>
 					<div class="basic_info">
-					<br>
+					
 					<a href = "" >
 					<font size="6" color="blue">
 						<?php 
@@ -82,16 +88,143 @@
 					
 					</section>
 					
-					<section class = "info" >
+					<section class = "view_info" >
+										
 					
+					<?php
+					if($list['biography']=="");
+					else
+						echo "<p> <font size=\"5\" color = \"green\"> About ".$list['name']." </font> <br/> <font size=\"4\">".$list['biography']."</font> </p>";
+				
+					?>
+					
+					<?php
+					
+						$username = $_GET['username'];
+						$sql = "SELECT course FROM user_course WHERE username = '$username'";
+						
+						$result=$conn->query($sql);
+					
+					?>
+					
+					<p> <font size="5" color="green"> Preferred subjects: </font> <br/> <font size="4">
+					<?php
+					
+						if($result->num_rows==0)
+							echo "No subject preferrence.";
+						else
+						{
+							while($course = mysqli_fetch_array($result,MYSQLI_ASSOC))
+							{
+								echo $course['course']."<br>";
+							}
+						}
+					?>
+					
+					</font> </p>
+					
+					<?php
+					
+						$username = $_GET['username'];
+						$sql = "SELECT location FROM user_location WHERE username = '$username'";
+						
+						$result=$conn->query($sql);
+					
+					?>
+					<p> <font size="5" color="green"> Preferred locations: </font> <br/> <font size="4">
+					
+					<?php
+					
+						if($result->num_rows==0)
+							echo "No location preferrence.";
+						else
+						{
+							while($location = mysqli_fetch_array($result,MYSQLI_ASSOC))
+							{
+								echo $location['location']."<br>";
+							}
+						}
+					?>
+					</font> </p>
+					
+					<div id="map"></div>
+					
+					<script>
+					  function initMap() {
+						var map = new google.maps.Map(document.getElementById('map'), {
+						  zoom: 13,
+						  center: {lat: 23.8103, lng: 90.4125}
+						});
+						var geocoder = new google.maps.Geocoder();						
+						geocodeAddress(geocoder, map);						
+					  }
 
+					  function geocodeAddress(geocoder, resultsMap) {
+					  
+						var address = "Shantinagar, Dhaka"; // HERE GOES THE ADDRESS
+						geocoder.geocode({'address': address}, function(results, status) {
+						  if (status === 'OK') {
+							resultsMap.setCenter(results[0].geometry.location);
+							var marker = new google.maps.Marker({
+							  map: resultsMap,
+							  position: results[0].geometry.location
+							});
+						  } else {
+							alert('Geocode was not successful for the following reason: ' + status);
+						  }
+						});
+						
+						address = "Motijheel, Dhaka"; // HERE GOES THE ADDRESS
+						geocoder.geocode({'address': address}, function(results, status) {
+						  if (status === 'OK') {
+							resultsMap.setCenter(results[0].geometry.location);
+							var marker = new google.maps.Marker({
+							  map: resultsMap,
+							  position: results[0].geometry.location
+							});
+						  } else {
+							alert('Geocode was not successful for the following reason: ' + status);
+						  }
+						});
+						
+						
+					  }
+					</script>
+					<script async defer
+					src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrW80WjP5pNfuVkfkGhMwyYvATjGf4RJc&callback=initMap">
+					</script>
+					
 					<br>
-					<p> <font size="5"> About <?php echo $list['name']; ?> </font> <br/> <font size="4"><?php echo $list['biography']; ?></font> </p>
 					
-					<p> <font size="5"> Preferred subjects: </font> <br/> <font size="4">Physics</font> </p>
 					
-					<p> <font size="5"> Preferred locations: </font> <br/> <font size="4">Dhanmondi</font> </p>
-					<p> <font size="5"> Minimum expected salary per month: </font> <br/> <font size="4">5000 BDT</font> </p>
+					<?php
+					
+						$username = $_GET['username'];
+						$sql = "SELECT salary FROM user_salary WHERE username = '$username'";
+						
+						$result=$conn->query($sql);
+					
+					?>
+					
+					<p> <font size="5" color="green"> Minimum expected salary per month: </font> <br/> <font size="4">
+					<?php
+					
+						if($result->num_rows==0)
+							echo "No salary preferrence.";
+						else
+						{
+							while($salary = mysqli_fetch_array($result,MYSQLI_ASSOC))
+							{
+								if($salary['salary']==0)
+									echo "No salary preferrence.";
+								else
+									echo $salary['salary']." BDT";
+								
+							}
+						}
+					
+					?>
+					</font> </p>
 					</section>
 					
 				</form>	

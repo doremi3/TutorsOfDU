@@ -18,21 +18,21 @@
 						
 						<div class = "logo" >
 						
-							<a href="home.php" class="image avatar"><img src="images/avatar.jpg" alt="" /></a>
+							<a href="home.php" class="image avatar"><img src="images/avatar.jpg" alt="" height="100"/></a>
 						</div>
 						
 						<div class = "title" >
-							<a href="home.php" class="image avatar"><font color = "blue">Tutors from<br> University of Dhaka</font></a>
+							 <a href="home.php" class="image avatar"><font color = "White">Tutors from<br> University of Dhaka</font></a>
 						</div>  
 						
-						<br><br>
+						<br>
 						<div style="float: right;">
 							
-								<a href="home.php" class="button">Home</a>
+								<a href="home.php" class="button special">Home</a>
 								
-								<a href=<?php echo $address; ?> class="button" ><?php echo $_SESSION['login_user'] ?></a>
+								<a href=<?php echo $address; ?> class="button special" >Profile</a>
 												
-								<a href="logout.php" class="button" >Log Out</a>
+								<a href="logout.php" class="button special" >Log Out</a>
 							</div>
 			</div>
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2017 at 07:28 PM
+-- Generation Time: May 06, 2017 at 09:23 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -37,8 +37,12 @@ CREATE TABLE `user_course` (
 --
 
 INSERT INTO `user_course` (`username_course`, `username`, `course`) VALUES
+('deki#Array', 'deki', 'Array'),
 ('shizuka#Array', 'shizuka', '500'),
-('testu#Array', 'testu', '');
+('testu#Array', 'testu', ''),
+('vala#Acting', 'vala', 'Acting'),
+('vala#Agricultural Studies\r\n', 'vala', 'Agricultural Studies\r\n'),
+('vala#Arabic\r\n', 'vala', 'Arabic\r\n');
 
 -- --------------------------------------------------------
 
@@ -57,10 +61,12 @@ CREATE TABLE `user_hash` (
 --
 
 INSERT INTO `user_hash` (`username`, `hash`, `active`) VALUES
+('deki', '30ef30b64204a3088a26bc2e6ecf7602', 1),
 ('maliha', 'f90f2aca5c640289d0a29417bcb63a37', 1),
 ('rakhi', '2421fcb1263b9530df88f7f002e78ea5', 0),
 ('shizuka', 'a64c94baaf368e1840a1324e839230de', 1),
-('testu', 'c3c59e5f8b3e9753913f4d435b53c308', 1);
+('testu', 'c3c59e5f8b3e9753913f4d435b53c308', 1),
+('vala', '9b72e31dac81715466cd580a448cf823', 1);
 
 -- --------------------------------------------------------
 
@@ -89,6 +95,7 @@ CREATE TABLE `user_info` (
 INSERT INTO `user_info` (`username`, `email`, `name`, `password`, `gender`, `phone`, `phone_privacy`, `department`, `biography`, `verified`, `isAvailable`) VALUES
 ('angel', 'tahershah@angel.com', 'Taher shah', 'tanzir', 'Male', '', 0, 'Marketing', 'An angel with spectrum eyes :) ', 0, 1),
 ('barna', 'barna@habib.com', 'Barna Nasid Habib', 'barna', 'Female', '', 0, 'Computer Science And Engineering', 'hello!', 0, 1),
+('deki', 'deki@zuki.com', 'dekizugi', 'deki', 'Male', '', 0, 'Department of Applied Chemistry & Chemical Engineering\r\n', '', 0, 1),
 ('jahid', 'jahid@hasan.com', 'Jahid Hasan', 'jahid', 'Male', '123456789', 1, 'Computer Science And Engineering', 'Hi , I am Jahid', 0, 1),
 ('mahir', 'mahir@gmail.com', 'Mahir Ashhab', 'mahir', 'Male', '', 0, 'Computer Science And Engineering', '', 0, 1),
 ('maliha', 'mahila@meb.com', 'Maliha Tashfia', 'maliha', 'Female', '', 0, 'Department of Computer Science and Engineering\r\n', '', 0, 1),
@@ -102,7 +109,8 @@ INSERT INTO `user_info` (`username`, `email`, `name`, `password`, `gender`, `pho
 ('shahreen', 'shahreen@salim.com', 'Shahreen Salim', 'salim', 'Female', '09876543243', 0, 'Computer Science And Engineering', 'B-)', 0, 1),
 ('shizuka', 'shizuka@nobi.com', 'Shizuka Minamoto', 'shizuka', 'Female', '', 0, 'Department of Bengali\r\n', 'lala', 0, 1),
 ('tanz', 'tanzir@pial.com', 'Tanzir Islam', 'tanzir', 'Male', '', 0, 'Computer Science And Engineering', '', 0, 1),
-('testu', 'test@yacom', 'test test', 'mahir', 'Male', '', 0, 'Confucius Institute', '', 0, 1);
+('testu', 'test@yacom', 'test test', 'mahir', 'Male', '', 0, 'Confucius Institute', '', 0, 1),
+('vala', 'vala@na.com', 'valo na', 'mahir', 'Male', '', 0, 'Confucius Institute', '', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -132,8 +140,10 @@ CREATE TABLE `user_salary` (
 --
 
 INSERT INTO `user_salary` (`username`, `salary`) VALUES
+('deki', 0),
 ('shizuka', 500),
-('testu', 0);
+('testu', 0),
+('vala', 0);
 
 --
 -- Indexes for dumped tables

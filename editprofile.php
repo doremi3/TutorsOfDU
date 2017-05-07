@@ -1,3 +1,4 @@
+<html>
 <?php
 
 
@@ -36,7 +37,6 @@
 	
 
 ?>
-<html>
     <head>
         <meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -69,11 +69,11 @@
 					
 				<div class="profile">
 				
-				<form method="post">
+				<form method="post" enctype="multipart/form-data" onsubmit = "return check_validity_again()" action="update_profile.php">
 					<section class = "header_info" >
 					
 					<div class = "profile_pic" >
-					<div class="3u"><span class="image fit"><img src= <?php echo $path; ?> alt="" /></span>  </div>
+					<div class="3u"><span class="image fit"><img src= <?php echo $path; ?> alt="" width = "250" height="250"  /></span>  </div>
 					
 					
 						<div class = "changepp" >
@@ -120,28 +120,56 @@
 					<section class = "info" >
 					
 					<p> <font size="5">Change Password</font>
-					<input type="password" placeholder = "Leave it empty if you do not want to change." name="new_password" maxlength="40">
+					<input type="password" placeholder = "Leave it empty if you do not want to change." name="new_password" id="new_password" maxlength="40">
 					
 					<p> <font size="5">Email</font>
-					<input type="email" value = <?php echo $list['email']; ?> id = "email" name = "email" maxlength="50" >
+					<input type="email" value = <?php echo $list['email']; ?> id = "email" name = "email" maxlength="50" required>
 					
 					<p> <font size="5"> About me</font>
-					<textarea name = "bio" placeholder = <?php echo $list['biography']; ?> > </textarea>
+					<textarea name = "bio" ><?php echo $list['biography']; ?> </textarea>
 					
-					<p> <font size="5"> Preferred subjects: </font>
-					<select id="course" name="course" style='height: 140px;' multiple>
+					<p> <font size="5"> Add to preferred subjects: </font>
+					<select  name="add_course[]" style='height: 140px;' multiple>
 						  
 						 <?php
 							
 							$courseLength = count($courselist);
 							for($i=0; $i<$courseLength; $i=$i+1)
+							{
+								$cl = $courselist[$i];
+								$lgn_usr = $_SESSION['login_user'];
+								
+								$sql = "SELECT * FROM user_course WHERE course = '$cl'";
+								$result = $conn->query($sql);
+								
+								
 								echo"<option value=\"".$courselist[$i]."\">".$courselist[$i]."</option>";
+							}
+							
 						?>
 						 
-					</select>									
+					</select>	
+
+					<p> <font size="5"> Remove from preferred subjects: </font>
+					<select  name="del_course[]" style='height: 140px;' multiple>
+						  
+						 <?php
+							
+							
+								$cl = $courselist[$i];
+								$lgn_usr = $_SESSION['login_user'];
+								
+								$sql = "SELECT * FROM user_course WHERE username = '$username'";
+								$result=$conn->query($sql);
+								while($list = mysqli_fetch_array($result,MYSQLI_ASSOC))
+									echo"<option value=\"".$list['course']."\">".$list['course']."</option>";
+							
+						?>
+						 
+					</select>						
 					
-					<p> <font size="5"> Preferred locations: </font>
-					<select id="location" name="location" style='height: 140px;' multiple>
+					<p> <font size="5"> Add to preferred locations: </font>
+					<select name="add_location[]" style='height: 140px;' multiple>
 						  
 						 <?php
 								
@@ -151,11 +179,44 @@
 						?>
 						 
 					</select>
+					
+					</select>						
+					
+					<p> <font size="5"> Remove from preferred locations: </font>
+					<select name="del_location[]" style='height: 140px;' multiple>
+						  
+						 <?php
+								$cl = $arealist[$i];
+								$lgn_usr = $_SESSION['login_user'];
+								
+								$sql = "SELECT * FROM user_location WHERE username = '$username'";
+								$result=$conn->query($sql);
+								while($list = mysqli_fetch_array($result,MYSQLI_ASSOC))
+									echo"<option value=\"".$list['location']."\">".$list['location']."</option>";
+							
+						?>
+						 
+					</select>
+					<?php
+						$sql = "SELECT * FROM user_salary WHERE username = '$username'";
+						$result = $conn->query($sql);
+						$list = mysqli_fetch_array($result,MYSQLI_ASSOC);						
+					?>
+					
 					<p> <font size="5"> Minimum expected salary per month:
-					<input type = "number" name = "salary" id = "salary">
+					<input type = "number" name = "salary" min="0" max="100000" id = "salary" value = <?php echo $list['salary'] ?>  >
 					<p> <font size="5">Your current password:
 					<input type = "password" name = "curr_password" id = "curr_password" maxlength="40" required>
+					<p> <font size="4" color="red" id="message" > </font> </p>
 					<button type="submit" value="submit" name="submit" >Save Changes</button>
+					<?php
+						$sql = "SELECT * FROM user_info WHERE username = '$username'";
+						$result = $conn->query($sql);
+						$list = mysqli_fetch_array($result,MYSQLI_ASSOC);						
+					?>
+					<input type = "hidden" value = <?php echo $list['username']; ?> name="usr" >
+					<input type="hidden" value = <?php echo $list['email']; ?> id = "old_email" >
+					<input type="hidden" value = <?php echo $list['password']; ?> id = "old_password" >
 					</section>
 					
 					
@@ -180,19 +241,26 @@
 		
 		
 		
-		<script>
 		
-			function sendMessage()
+		
+		<script>
+			
+			
+			function check_validity_again()
 			{
-
-				var inpname = document.getElementById("name");
-				var inpto = document.getElementById("to");
-				var inpemail = document.getElementById("email");
-				var inpmessage = document.getElementById("message");
+				if(matchPassword()==false)
+				{
+					document.getElementById("message").innerHTML = "Password is wrong!";
+					return false;
+				}
+				var oldEmail = document.getElementById("old_email").value;
+				var newEmail = document.getElementById("email").value;
+				if(oldEmail==newEmail)
+					return true;
 				var xhttp = new XMLHttpRequest();
 				var response;
-				var url="send_message.php";
-				var params = "to="+inpto.value+"&name="+inpname.value+"&email="+inpemail.value+"&message="+inpmessage.value;
+				var url="email_validation.php";
+				var params = "email="+newEmail;
 				xhttp.open("POST",url,false);
 				xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			
@@ -201,17 +269,52 @@
 					if(this.readyState==4 && this.status ==200)
 					{					
 						response =xhttp.responseText;
-						//alert(response);
-						document.getElementById("success").innerHTML = "Message has been sent! :)";
 						
 						
 					}
 				}
 				
-				xhttp.send(params);
-				return false;
+				
+				xhttp.send(params);	
+				if(response != "")
+				{
+					document.getElementById("message").innerHTML = response;
+					return false;
+				}
+				
+				return true;
 			}
-		
+			
+			function matchPassword()
+			{
+				
+				var currPass = document.getElementById("curr_password").value;
+				var oldPass = document.getElementById("old_password").value;
+				var xhttp = new XMLHttpRequest();
+				var response;
+				var url="match_password.php";
+				var params = "curr_password="+currPass+"&old_password="+oldPass;
+				xhttp.open("POST",url,false);
+				xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				xhttp.onreadystatechange = function()
+				{
+					if(this.readyState==4 && this.status ==200)
+					{					
+						response =xhttp.responseText;
+						
+						
+					}
+				}
+				
+				xhttp.send(params);	
+				if(response=="valid")
+					return true;
+				else if(response=="invalid")
+					return false;
+			}
+			
+			
+			
 		</script>
 
 		<!-- Scripts -->

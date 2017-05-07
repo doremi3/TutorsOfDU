@@ -7,6 +7,7 @@ $username = $_POST["username"];
 $email = $_POST["email"];
 $name = $_POST["name"];
 $password = $_POST["password"];
+$password = md5( $password);
 $phone = $_POST["phone"];
 $phone_privacy = $_POST["phone_privacy"];
 $photo = "photo";

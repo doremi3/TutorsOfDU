@@ -8,9 +8,23 @@
 	}
 	sort($deptlist);
 	fclose($deptfile);
-	//session_start();
-	/*$login_session=$_SESSION['login_user'];
-	echo $login_session;</h1>*/
+	$areafile = fopen("area_list.txt", "r") or die("Unable to open file!");
+	$arealist = array();
+	while(!feof($areafile)) 
+	{
+		array_push($arealist,fgets($areafile));
+	}
+	sort($arealist);
+	fclose($areafile);
+	
+	$coursefile = fopen("course_list.txt", "r") or die("Unable to open file!");
+	$courselist = array();
+	while(!feof($coursefile)) 
+	{
+		array_push($courselist,fgets($coursefile));
+	}
+	sort($courselist);
+	fclose($coursefile);
 	
 
 ?>
@@ -115,7 +129,7 @@
 						
 					
 					<label for="salary"><font size="4">Minimum salary per month:</font></label>
-					<input type = "number" name = "salary" id = "salary">
+					<input type = "number" name = "salary" id = "salary" min="0" max="100000" >
 				
                                
 				</fieldset>
