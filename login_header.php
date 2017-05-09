@@ -41,11 +41,11 @@ $deptfile = fopen("department_list.txt", "r") or die("Unable to open file!");
 						
 						<div class = "logo" >
 						
-							<a href="home.php" class="image avatar"><img src="images/avatar.jpg" alt="" height="100"/></a>
+							<a href="home" class="image avatar"><img src="images/avatar.jpg" alt="" height="100"/></a>
 						</div>
 						
 						<div class = "title" >
-							 <a href="home.php" class="image avatar"><font color = "White">Tutors from<br> University of Dhaka</font></a>
+							 <a href="home" class="image avatar"><font color = "White">Tutors from<br> University of Dhaka</font></a>
 						</div>  
 						
 						<div class = "header_button" >

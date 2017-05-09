@@ -19,7 +19,7 @@
 			$sql = "SELECT * FROM user_info WHERE username= '$usr'"; 
 			$result=$conn->query($sql);
 			if($result->num_rows==0)
-				header("location: home.php");
+				header("location: home");
 			$list=mysqli_fetch_array($result,MYSQLI_ASSOC);
 			echo $list['name']."|Tutors from DU"; ?></title>
 		<link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>  
@@ -62,7 +62,7 @@
 					
 					<?php
 						if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true && isset($_SESSION['login_user']) && $_SESSION['login_user']==$list['username'])
-							echo "<br> <div class = \"changepp\" > <a href=\"editprofile.php?username=".$_SESSION['login_user']."\" class=\"button\">Edit Profile </a> </div>";
+							echo "<br> <div class = \"changepp\" > <a href=\"editprofile?username=".$_SESSION['login_user']."\" class=\"button\">Edit Profile </a> </div>";
 					?>
 	
 					</div>

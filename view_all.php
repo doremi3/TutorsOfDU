@@ -105,7 +105,7 @@
 							
 								echo "<article class=\"4u 12u$(xsmall) work-item\">";
 								echo "<a href=".$path." class=\"image fit thumb\"><img src=".$path." alt=\"\"></a>";
-								echo "<a href=\"profile.php?username=".$list['username']."\" >"."<font size=\"4\">".$list['name']."</font> </a>";
+								echo "<a href=\"profile?username=".$list['username']."\" >"."<font size=\"4\">".$list['name']."</font> </a>";
                                                                // echo "	<h3> ".$list['name']." </h3>";
 								echo "	<p> "."<font size = \"2\" >".$list['department']."</font> </p>"	;															
 								echo "</article>";
@@ -128,7 +128,7 @@
 								$page = $_SESSION['page']-1; 
 								if($page>0)
 								{
-									echo"<a href=\"view_all.php?page=".$page."\""." class= \"button\" style = \"margin-left : 0px\" >Previous</a>";
+									echo"<a href=\"view_all?page=".$page."\""." class= \"button\" style = \"margin-left : 0px\" >Previous</a>";
 									
 								}
 								
@@ -139,7 +139,7 @@
 								$page = $_SESSION['page']+1; 
 								if($cnt+$start<$rows)
 								{
-									echo"<a href=\"view_all.php?page=".$page."\""." class= \"button\" style = \"margin-left : 500px\" >Next</a>";
+									echo"<a href=\"view_all?page=".$page."\""." class= \"button\" style = \"margin-left : 500px\" >Next</a>";
 									
 								}
 							

@@ -6,7 +6,7 @@
 	include"config.php";
 	if(isset($_GET['username']) && isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true && isset($_SESSION['login_user']) && $_SESSION['login_user']==$_GET['username']);
 	else
-		header("location: home.php");
+		header("location: home");
 	
 	$deptfile = fopen("department_list.txt", "r") or die("Unable to open file!");
 	$deptlist = array();
@@ -88,7 +88,7 @@
 					</div>
 					<div class="basic_info">
 					<br>
-					<a href = "profile.php?username=<?php echo $_SESSION['login_user']; ?>" >
+					<a href = "profile?username=<?php echo $_SESSION['login_user']; ?>" >
 					<font size="6" color="blue">
 						<?php 
 							echo $list['name'];
