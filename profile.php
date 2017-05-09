@@ -176,7 +176,7 @@
 					while($currlist = mysqli_fetch_array($currresult,MYSQLI_ASSOC))
 					{					
 							$curr= $currlist['location'];
-							//$curr = "Badda";
+							$curr = "Badda";
 							$curr=$curr.",Dhaka;";
 							echo "<script>
 							  function geocodeAddress(geocoder, resultsMap) {

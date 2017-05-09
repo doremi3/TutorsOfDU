@@ -52,7 +52,7 @@ $deptfile = fopen("department_list.txt", "r") or die("Unable to open file!");
 							<ul class="actions">
 								
 								<li>
-								<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button>														
+								<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Become a tutor</button>														
 								</li>							
 								
 								<li>

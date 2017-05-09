@@ -2546,10 +2546,11 @@
 	.header_button {
 		
 		padding: 1em 0em 0em 0em;
-		max-width: 25%;
+		max-width: 45%;
 		flex-grow: 1;
-		margin-left: 0%;
+		margin-left: 30%;
 		float: right;
+
 	
 	
 	}

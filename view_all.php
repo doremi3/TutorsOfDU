@@ -37,7 +37,7 @@
 						include("config.php");
 						
 			
-						$sql = "SELECT username FROM user_info WHERE isAvailable = '1' AND verified = '1' ";
+						$sql = "SELECT DISTINCT username FROM user_info WHERE isAvailable = '1' AND verified = '1' ";
 				
 						if(isset($_GET['department']))
 						{
@@ -50,19 +50,19 @@
 						$old= $sql;
 						if(isset($_GET['location']))
 						{
-							$sql = "SELECT username FROM user_location WHERE ( ";
+							$sql = "SELECT DISTINCT username FROM user_location WHERE ( ";
 							$location=$_GET['location'];
 							foreach ($location as $curr)
 								$sql=$sql." location = '$curr' OR ";
 							$sql=$sql." location = '$curr' ) ";
 							
-							$sql=$sql." and username IN ( ".$old." )";
+							$sql=$sql." AND username IN ( ".$old." )";
 						}
 						
 						$old= $sql;
 						if(isset($_GET['course']))
 						{
-							$sql = "SELECT username FROM user_course WHERE ( ";
+							$sql = "SELECT DISTINCT username FROM user_course WHERE ( ";
 							$course=$_GET['course'];
 							foreach ($course as $curr)
 								$sql=$sql." course = '$curr' OR ";
@@ -72,7 +72,7 @@
 						}
 						
 					//	echo $sql;
-						$result = mysqli_query($conn,$sql);
+						$result=$conn->query($sql);
 						
 						$rows = $result->num_rows;
 						
