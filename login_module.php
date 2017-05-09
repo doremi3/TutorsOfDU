@@ -154,10 +154,10 @@
 				<fieldset>
 				  
 				  <label for="username"><font size="4">Username:</font></label>
-				  <input type="text" id="login_username" name="username" required>				  
+				  <input type="text" id="login_username" name="username"  value="demo" required>				  
 				  
 				  <label for="password"><font size="4">Password:</font></label>
-				  <input type="password" id="login_password" name="password" required><br>
+				  <input type="password" id="login_password" name="password"  value="demo" required><br>
 				  <font color="red"><p id="login_validity"> </p></font>
 				  
 				  <a href="forgotpassword.php" ><font size="5">Forgot your password?</font></a>
